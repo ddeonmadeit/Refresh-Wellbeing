@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# WordPress leftovers that are not real pages
+Disallow: /wp-json/
+
+Sitemap: https://refreshwellbeing.com.au/sitemap.xml
