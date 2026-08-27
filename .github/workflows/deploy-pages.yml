@@ -1,4 +1,4 @@
-# Publishes the static clone in site/ to GitHub Pages.
+# Publishes the static clone to GitHub Pages.
 #
 # The site is served from a project-site sub-path
 # (https://<owner>.github.io/Refresh-Wellbeing/), which works because every
@@ -33,16 +33,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure Pages
-        # Pages is already enabled for this repo (Settings -> Pages -> Source:
-        # GitHub Actions). Deliberately no `enablement: true` here - creating
-        # the Pages site needs an admin permission the Actions token does not
-        # carry, and it fails the whole job when it tries.
+        # No `enablement: true` - creating the Pages site needs an admin
+        # permission the Actions token does not carry, and it fails the job.
         uses: actions/configure-pages@v5
 
-      - name: Upload site/ as the Pages artifact
+      - name: Upload the site as the Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: .
 
       - name: Deploy to GitHub Pages
         id: deployment

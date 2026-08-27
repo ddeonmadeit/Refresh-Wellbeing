@@ -4,7 +4,9 @@ A complete static copy of [refreshwellbeing.com.au](https://refreshwellbeing.com
 with the homepage hero video changed to a clean, silent, looping background
 video — no play button, no player chrome, nothing clickable.
 
-Everything lives under [`site/`](site/), which is the web root.
+The site is served from the repository root, so GitHub Pages works with
+**Settings → Pages → Source** set to either *Deploy from a branch* (root) or
+*GitHub Actions*.
 
 **Live:** https://ddeonmadeit.github.io/Refresh-Wellbeing/
 
@@ -22,16 +24,16 @@ WordPress site. The only outbound request is the hero video (see below).
 ## Running it
 
 ```bash
-npx http-server site -p 8080
+npx http-server . -p 8080
 # then open http://localhost:8080
 ```
 
 Any static host works — GitHub Pages, Netlify, Cloudflare Pages, nginx, S3.
-Point the document root at `site/`.
+Point the document root at the repository root.
 
 ## Deployment
 
-`.github/workflows/deploy-pages.yml` publishes `site/` to GitHub Pages on every
+`.github/workflows/deploy-pages.yml` publishes the site to GitHub Pages on every
 push to `claude/refresh-wellbeing-clone-s3wlba` (the default branch), and can
 also be run by hand from the Actions tab.
 
@@ -39,7 +41,7 @@ The site is served from a project sub-path
 (`https://ddeonmadeit.github.io/Refresh-Wellbeing/`), which works because every
 asset reference in the clone is relative. Keep it that way — a root-relative
 path like `/wp-content/...` would resolve above the sub-path and 404.
-`site/.nojekyll` stops Pages from running the files through Jekyll.
+`.nojekyll` stops Pages from running the files through Jekyll.
 
 ## The homepage hero video
 
@@ -50,9 +52,9 @@ which is the overlay you wanted gone.
 
 That slider has been replaced with a plain background video block:
 
-- `site/assets/rw-hero-video.css` — layout and sizing
-- `site/assets/rw-hero-video.js` — optional swap to a self-hosted file
-- `site/assets/hero/hero-poster.jpg` — first-frame poster
+- `assets/rw-hero-video.css` — layout and sizing
+- `assets/rw-hero-video.js` — optional swap to a self-hosted file
+- `assets/hero/hero-poster.jpg` — first-frame poster
 
 It ships as a YouTube background with every control switched off
 (`controls=0`, `modestbranding=1`, `disablekb=1`, `fs=0`, `iv_load_policy=3`)
@@ -69,8 +71,8 @@ data-saver modes can still refuse muted autoplay and fall back to a poster with
 a play button. The only way to guarantee zero chrome everywhere is to serve the
 file yourself.
 
-Drop your video in as `site/assets/hero/hero.mp4`, then point the hero at it —
-one attribute in `site/index.html`:
+Drop your video in as `assets/hero/hero.mp4`, then point the hero at it —
+one attribute in `index.html`:
 
 ```html
 <div class="rw-hero-video" role="presentation" data-local-video="assets/hero/hero.mp4"
