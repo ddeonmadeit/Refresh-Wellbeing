@@ -33,11 +33,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure Pages
-        # enablement: true turns Pages on for the repo if it is not already,
-        # so this works without anyone flipping a setting by hand.
+        # Pages is already enabled for this repo (Settings -> Pages -> Source:
+        # GitHub Actions). Deliberately no `enablement: true` here - creating
+        # the Pages site needs an admin permission the Actions token does not
+        # carry, and it fails the whole job when it tries.
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload site/ as the Pages artifact
         uses: actions/upload-pages-artifact@v3
