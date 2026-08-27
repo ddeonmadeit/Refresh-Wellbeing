@@ -1,0 +1,49 @@
+# Publishes the static clone in site/ to GitHub Pages.
+#
+# The site is served from a project-site sub-path
+# (https://<owner>.github.io/Refresh-Wellbeing/), which works because every
+# asset reference in the clone is relative. Keep it that way - a root-relative
+# path like /wp-content/... would resolve above the sub-path and 404.
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - claude/refresh-wellbeing-clone-s3wlba
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        # enablement: true turns Pages on for the repo if it is not already,
+        # so this works without anyone flipping a setting by hand.
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site/ as the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

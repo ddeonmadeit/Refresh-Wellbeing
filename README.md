@@ -6,6 +6,8 @@ video — no play button, no player chrome, nothing clickable.
 
 Everything lives under [`site/`](site/), which is the web root.
 
+**Live:** https://ddeonmadeit.github.io/Refresh-Wellbeing/
+
 ## What's here
 
 | | |
@@ -26,6 +28,18 @@ npx http-server site -p 8080
 
 Any static host works — GitHub Pages, Netlify, Cloudflare Pages, nginx, S3.
 Point the document root at `site/`.
+
+## Deployment
+
+`.github/workflows/deploy-pages.yml` publishes `site/` to GitHub Pages on every
+push to `claude/refresh-wellbeing-clone-s3wlba` (the default branch), and can
+also be run by hand from the Actions tab.
+
+The site is served from a project sub-path
+(`https://ddeonmadeit.github.io/Refresh-Wellbeing/`), which works because every
+asset reference in the clone is relative. Keep it that way — a root-relative
+path like `/wp-content/...` would resolve above the sub-path and 404.
+`site/.nojekyll` stops Pages from running the files through Jekyll.
 
 ## The homepage hero video
 
