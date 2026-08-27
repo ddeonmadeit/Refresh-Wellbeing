@@ -127,3 +127,43 @@ input[type="submit"],
 .rw-nav-cta {
 	font-weight: 400;
 }
+
+/* =====================================================================
+ * Mobile overflow guards
+ *
+ * Three pages scrolled sideways on a phone. Two causes, both fixed here
+ * rather than by editing the content.
+ * ===================================================================== */
+
+@media (max-width: 767px) {
+
+	/* Bare URLs pasted into posts are single unbreakable "words" and pushed
+	   the page wider than the screen. Let them wrap mid-string. */
+	p,
+	li,
+	dd,
+	blockquote,
+	.post-content,
+	.blog-text,
+	.elementor-widget-text-editor,
+	.elementor-heading-title {
+		overflow-wrap: anywhere;
+	}
+
+	/* Anything that carries its own intrinsic width stays inside the column. */
+	img,
+	video,
+	iframe,
+	table,
+	pre {
+		max-width: 100%;
+	}
+
+	/* The private-classes cards are authored as width:100% *plus* a 10px
+	   margin, so they came to 20px wider than the viewport. Let the width be
+	   derived from the space actually available instead. */
+	.elementor-element-4473066,
+	.elementor-element-e672c16 {
+		width: auto !important;
+	}
+}
