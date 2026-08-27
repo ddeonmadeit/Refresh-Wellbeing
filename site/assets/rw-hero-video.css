@@ -1,0 +1,66 @@
+/*
+ * Refresh Wellbeing - homepage hero background video.
+ *
+ * Replaces the Slider Revolution / YouTube-embed hero, which painted YouTube's
+ * own chrome (large play button, title bar, share + watch-later buttons) over
+ * the footage. This is a silent, looping, non-interactive background video:
+ * no controls, no play head, nothing clickable.
+ *
+ * Heights mirror the original slider's per-breakpoint module heights
+ * (700 / 768 / 960 / 720) so the page below it lands exactly where it did.
+ */
+
+.rw-hero-video {
+	position: relative;
+	/* Full-bleed, matching the original slider's fullWidth:true. */
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	height: 700px;
+	overflow: hidden;
+	background-color: #000;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	line-height: 0;
+}
+
+/* The media itself never takes pointer input, so YouTube's hover chrome can
+   never be summoned and the viewer cannot pause or scrub the loop. */
+.rw-hero-video__media {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 0;
+	pointer-events: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/* Native <video> path: plain object-fit cover. */
+video.rw-hero-video__media {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* YouTube iframe path: oversize a 16:9 box so it covers the banner and any
+   residual branding at the frame edges sits outside the visible area. */
+iframe.rw-hero-video__media {
+	width: 100vw;
+	height: 56.25vw;          /* 16:9 relative to width  */
+	min-width: 177.7778vh;    /* 16:9 relative to height */
+	min-height: 100%;
+}
+
+@media (max-width: 1024px) {
+	.rw-hero-video { height: 768px; }
+}
+
+@media (max-width: 778px) {
+	.rw-hero-video { height: 960px; }
+}
+
+@media (max-width: 480px) {
+	.rw-hero-video { height: 720px; }
+}

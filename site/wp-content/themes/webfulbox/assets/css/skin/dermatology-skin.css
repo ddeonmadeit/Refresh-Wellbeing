@@ -1,0 +1,85 @@
+/*------------------------------------------------------------------
+	[Color Scheme]
+-------------------------------------------------------------------*/
+
+/*
+ * Color Not Important
+ */
+.footer-box ul li a, .footer-logo-side .contact-us a, .service-single-post .sidebar .widget ul li a, .accordion-content, .form-section ::placeholder, .widget-content, .sidebar .widget-content a, label, p, ul, ol, a, blockquote, input, textarea, select, [type=date], [type=text], [type=email], span, .topBar a, body, ::placeholder {
+	color:#383838;
+}
+
+.section-title.psychology h2, .footer-box .social-icons ul li a, .footer-box .footer-news h2 a, .sidebar .widget-content a:hover, .footer-logo-side .contact-us span, .tags li a, .sidebar .popular-post a, .sidebar .popular-post a strong, .sidebar .menu > li > a, .pagination a, .pagination button, .contact-card.no-bg ul li a i, .contact-card ul li a, .contact-card ul li span, cite, .sidebar .info-side p strong, .meta-tags span, .meta-tags a, .blog-text p a, .dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent>a, .dropdown.menu li a, .header .icon-side i, .info-side p strong, .section-title-second p, .section-title p, .search-wrap a, .counter-text p, .pagination-container.single-post-pagination, .pagination-container.single-post-pagination ul li, .accordion-title, .form-section .form p, .footer-widget table caption, .sidebar table caption, table caption, table thead, dl dt, th, a, h1, h2, h3, h4, h5, h6, h2 a, h3 a, h4 a, h5 a, h6 a, strong, .service-box.icon-style .service-text a:hover, .service-box.icon-style .service-text h4 a, h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
+	color:#0e0e0e;
+}
+
+.copyrightinfo, .footer-bottom .menu.social li, .footer-bottom-nav ul li a, .pagination a:hover, .pagination button:hover, .page-filter .pagination li.current a, .contact-card ul li, .button-default, .title-section .breadcrumbs li strong, .title-section h1, .sidebar .icon-box .icon-side, .title-section .breadcrumbs li a, .title-section .breadcrumbs li, .pricing-table .icon-box i, .sticky-post, .pagination-container.single-post-pagination ul li:nth-child(2), .pagination-container.single-post-pagination ul li:hover, .accordion-title::before, .staff-text h6 a, .slide-text h3, .about-img p, .slide-text p, .main-banner .owl-prev:hover, .main-banner .owl-next:hover, .main-banner .owl-prev, .main-banner .owl-next, .hover-wrap:hover .hover-bottom p, .hover-wrap:hover .hover-bottom a, .button.secondary, .button.secondary:hover, .button.primary:hover, .title-section h1, .title-section .breadcrumbs .button.primary, .light-title .section-title p, .light-title .section-title h2 {
+	color:#fff;
+}
+
+.staff-text p, .slide-text h2, .hover-wrap:hover .hover-bottom a:hover {
+	color:#e1e8f0;
+}
+
+/**
+ * Background Color Not Important (Don't include Background without -color here.)
+ */
+.price-details li, .accordion-title:focus, .accordion-title:hover, .accordion-title, .tags li a, .grey-bg {
+	background-color:#e1e8f0;
+}
+
+blockquote, .boxed, .form-section select, .form-section [type=email], .form-section [type=text], .form-section textarea, .service-box .service-text, .information-icon,
+.information-text, .single-post .news-post {
+	background-color:#FFF;
+}
+
+.preloader, li.trackback, .author-box, .accordion-content, .search-box, .navigation, .top-bar ul, .topBar, .footer-top:before, .contact-card ul li, .news-date, .sharing-posts, .blog-single-post .news-text, .single-doc-img .thumbnail, .pricing-table, .testimonial .testimonial-text, .header, .blog-text, .sidebar .widget-content {
+	background-color:#f8f8f8;
+}
+
+.accordion-title:focus, .accordion-title:hover {
+	background-color:#ededed;
+}
+.widget h2 {
+	background-color:#f2f2f2;
+}
+.footer-widget table caption, .sidebar table caption, {
+	background-color: #f8f8f8;
+}
+.sharing-posts .tags a, .form-section.grey-bg, .single-doctor.blog-text, .testimonials.grey-bg, .achievement-counter.grey-bg, .top-bar, .call-to-action.grey-bg {
+	background-color:transparent;
+}
+
+.footer-bottom {
+	background-color:#2e323e;
+}
+
+.blend-mode:after, .appointment-page.dark-bg:before, .dark-bg:before {
+	background-color:rgba(225, 232, 240, 0.9);
+}
+
+.hover-bottom:after,
+.hover-info {
+	background-color:rgba(3, 111, 157, 0.75);
+}
+
+.testimonials.dark-bg:before {
+    background-color: rgba(225, 232, 240, 0.85);
+}
+.title-section:before {
+	background-color:rgba(3, 111, 158, 0.36);
+}
+.call-to-action.dark-bg:before {
+    background-color: rgba(225, 232, 240, 0.7);
+}
+
+
+/*------------------------------------------------------------------
+	[Typography Stylesheet]
+-------------------------------------------------------------------*/
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, .button, .footer-logo-side .contact-us ul li:last-child a, .footer-logo-side .contact-us span, h1, h2, h3, h4, h5, h6, h2 a, h3 a, h4 a, h5 a, h6 a, strong, body {
+	font-family:'Poppins', sans-serif;
+}
+.about-text h2, .slide-text h2 {
+	font-family: 'Niconne', cursive;
+}

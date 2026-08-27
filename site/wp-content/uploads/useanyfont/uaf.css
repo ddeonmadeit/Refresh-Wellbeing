@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'canela-regular-trial';
+					src: url('891Canela-Regular-Trial.woff2') format('woff2'),
+						url('891Canela-Regular-Trial.woff') format('woff');
+					font-weight: 400; font-style: normal; font-display: auto;
+				}
+
+				.canela-regular-trial{font-family: 'canela-regular-trial' !important;}
+
+		
