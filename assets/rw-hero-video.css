@@ -37,6 +37,33 @@
 	user-select: none;
 }
 
+/*
+ * Colour grade.
+ *
+ * Sampled, the footage averages #A0551F - hue 25deg, saturation 0.81. The
+ * brand palette sits at hue 26-29deg but saturation 0.54-0.67 (#432D1A ink,
+ * #CA925C tan). So the hue was already right; the footage simply ran far more
+ * vivid than everything around it, which is what read as disconnected.
+ *
+ * Saturation is pulled back toward the palette and a brand-brown wash is laid
+ * over the top to seat it against the header and the section below.
+ */
+.rw-hero-video__media {
+	filter: saturate(0.72) contrast(0.97) brightness(0.98);
+}
+
+.rw-hero-video::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		linear-gradient(180deg,
+			rgba(42, 26, 14, 0.30) 0%,
+			rgba(42, 26, 14, 0.10) 38%,
+			rgba(67, 45, 26, 0.26) 100%);
+}
+
 /* Native <video> path: plain object-fit cover. */
 video.rw-hero-video__media {
 	width: 100%;
