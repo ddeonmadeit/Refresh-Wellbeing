@@ -53,14 +53,21 @@ iframe.rw-hero-video__media {
 	min-height: 100%;
 }
 
+/*
+ * Heights below are lower than the slider's originals (768/960/720). Those
+ * were sized for a cropped still; against real 16:9 footage a 720px-tall box
+ * on a 390px screen shows barely a third of the frame's width and slices the
+ * subject in half. These keep the hero full-bleed while letting far more of
+ * the shot survive the crop.
+ */
 @media (max-width: 1024px) {
-	.rw-hero-video { height: 768px; }
+	.rw-hero-video { height: 620px; }
 }
 
 @media (max-width: 778px) {
-	.rw-hero-video { height: 960px; }
+	.rw-hero-video { height: 540px; }
 }
 
 @media (max-width: 480px) {
-	.rw-hero-video { height: 720px; }
+	.rw-hero-video { height: 460px; }
 }

@@ -437,15 +437,17 @@ img.attachment-wc-blog-large.size-wc-blog-large.wp-post-image {
      Replaces the Slider Revolution YouTube embed, which overlaid the
      footage with YouTube's play button and player chrome. Nothing here
      is clickable and no controls are rendered. -->
-<div class="rw-hero-video" role="presentation" data-local-video=""
-     data-poster="assets/hero/hero-poster.jpg"
-     style="background-image:url('assets/hero/hero-poster.jpg')">
-	<iframe class="rw-hero-video__media"
-	        src="https://www.youtube.com/embed/dBmETCZ0RgE?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=dBmETCZ0RgE&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0&amp;playsinline=1&amp;cc_load_policy=0"
-	        title="Refresh Wellbeing"
-	        allow="autoplay; encrypted-media"
-	        referrerpolicy="strict-origin-when-cross-origin"
-	        frameborder="0" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+<div class="rw-hero-video" role="presentation">
+	<video class="rw-hero-video__media"
+	       poster="assets/hero/hero-poster.jpg"
+	       autoplay muted loop playsinline webkit-playsinline
+	       preload="metadata" disablepictureinpicture
+	       tabindex="-1" aria-hidden="true">
+		<source src="assets/hero/hero.mp4" type="video/mp4"
+		        data-src-mobile="assets/hero/hero-mobile.mp4" />
+		<source src="assets/hero/hero.webm" type="video/webm"
+		        data-src-mobile="assets/hero/hero-mobile.webm" />
+	</video>
 </div>
 
 						</div>
