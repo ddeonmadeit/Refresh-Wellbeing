@@ -235,3 +235,50 @@ body .bdp_blog_template h2.title a,
 body .bdp_blog_template h2.title {
 	background-color: transparent !important;
 }
+
+/* =====================================================================
+ * Testimonials - horizontal scroller
+ *
+ * The three testimonials sit in a flex row that wraps. On desktop they
+ * fit side by side in ~484px, but once the row wraps they stack and the
+ * section grows to about 1348px on a phone - a huge amount of vertical
+ * space for three quotes.
+ *
+ * Below the desktop breakpoint the row is kept on one line and becomes a
+ * snap scroller instead. Cards sit at 86% width so the next one peeks in
+ * at the edge, which is what signals it can be swiped - no dots needed.
+ * ===================================================================== */
+
+@media (max-width: 1024px) {
+
+	.elementor-element-e9f3825 {
+		flex-wrap: nowrap !important;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+		/* Keep a horizontal swipe from turning into a page-level back gesture. */
+		overscroll-behavior-x: contain;
+		scroll-padding-inline: 16px;
+		/* The scrollbar would sit across the brown panel; the peeking card
+		   already communicates that the row scrolls. */
+		scrollbar-width: none;
+	}
+
+	.elementor-element-e9f3825::-webkit-scrollbar {
+		display: none;
+	}
+
+	.elementor-element-e9f3825 > .e-con {
+		flex: 0 0 86%;
+		min-width: 0;
+		scroll-snap-align: center;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.elementor-element-e9f3825 {
+		scroll-behavior: auto;
+	}
+}
