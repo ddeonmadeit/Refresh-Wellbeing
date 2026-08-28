@@ -414,16 +414,20 @@ img.attachment-wc-blog-large.size-wc-blog-large.wp-post-image {
      footage with YouTube's play button and player chrome. Nothing here
      is clickable and no controls are rendered. -->
 <div class="rw-hero-video" role="presentation">
-	<video class="rw-hero-video__media"
-	       poster="assets/hero/hero-poster.jpg"
+	<!-- Two identical layers. The script plays them in turn and cross-dissolves
+	     one into the other a beat before the end, so the loop blends instead of
+	     cutting. Without JavaScript the first layer simply loops on its own. -->
+	<video class="rw-hero-video__media is-live"
+	       src="assets/hero/hero-mobile.mp4"
 	       autoplay muted loop playsinline webkit-playsinline
-	       preload="metadata" disablepictureinpicture
-	       tabindex="-1" aria-hidden="true">
-		<source src="assets/hero/hero.mp4" type="video/mp4"
-		        data-src-mobile="assets/hero/hero-mobile.mp4" />
-		<source src="assets/hero/hero.webm" type="video/webm"
-		        data-src-mobile="assets/hero/hero-mobile.webm" />
-	</video>
+	       preload="auto" disablepictureinpicture disableremoteplayback
+	       x-webkit-airplay="deny" controlslist="nodownload noplaybackrate"
+	       tabindex="-1" aria-hidden="true"></video>
+	<video class="rw-hero-video__media"
+	       muted playsinline webkit-playsinline
+	       preload="auto" disablepictureinpicture disableremoteplayback
+	       x-webkit-airplay="deny" controlslist="nodownload noplaybackrate"
+	       tabindex="-1" aria-hidden="true"></video>
 	<div class="rw-hero-copy">
 		<p class="rw-hero-copy__line">Learn To <span class="rw-hero-copy__script">Thrive</span></p>
 		<p class="rw-hero-copy__line">Not Just Survive</p>

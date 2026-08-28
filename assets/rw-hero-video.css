@@ -41,15 +41,19 @@
 	margin-left: calc(50% - 50vw);
 	height: 700px;
 	overflow: hidden;
-	background-color: #000;
+	/* A still frame sits under the layers, so there is always something to
+	   look at: while the footage buffers, and on any browser that refuses
+	   muted autoplay outright. */
+	background-color: #2A1A0D;
+	background-image: url('hero/hero-poster.jpg');
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	line-height: 0;
 }
 
-/* The media itself never takes pointer input, so YouTube's hover chrome can
-   never be summoned and the viewer cannot pause or scrub the loop. */
+/* The media itself never takes pointer input, so no player chrome can be
+   summoned and the viewer cannot pause or scrub the loop. */
 .rw-hero-video__media {
 	position: absolute;
 	top: 50%;
@@ -59,6 +63,40 @@
 	pointer-events: none;
 	-webkit-user-select: none;
 	user-select: none;
+}
+
+/*
+ * The two layers of the blended loop.
+ *
+ * Both start transparent over the still frame and are faded up only once the
+ * browser reports the footage playing. That is what guarantees no play head:
+ * where autoplay is refused there is no <video> on screen for Safari to draw
+ * its start-playback button over - just the still.
+ *
+ * The same transition carries the loop seam: the incoming layer starts from
+ * zero underneath and dissolves over the outgoing one.
+ */
+video.rw-hero-video__media {
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 900ms linear;
+}
+
+video.rw-hero-video__media.is-live {
+	opacity: 1;
+}
+
+/* Belt and braces against the iOS start-playback overlay and any residual
+   control surface a browser might paint over a background video. */
+video.rw-hero-video__media::-webkit-media-controls,
+video.rw-hero-video__media::-webkit-media-controls-panel,
+video.rw-hero-video__media::-webkit-media-controls-start-playback-button,
+video.rw-hero-video__media::-webkit-media-controls-overlay-play-button,
+video.rw-hero-video__media::-webkit-media-controls-play-button {
+	display: none !important;
+	-webkit-appearance: none;
+	appearance: none;
+	opacity: 0 !important;
 }
 
 /*
@@ -80,7 +118,7 @@
 	content: '';
 	position: absolute;
 	inset: 0;
-	z-index: 1;
+	z-index: 3;
 	pointer-events: none;
 	/* The headline is dark ink over the bright sky, so the previous left-hand
 	   scrim is gone - it would have muddied exactly the area the text sits on.
@@ -119,19 +157,17 @@ iframe.rw-hero-video__media {
 	.rw-hero-video { height: 620px; }
 }
 
+/*
+ * Below 778px the band is locked to 1.418:1 - 275px tall against a 390px
+ * viewport, which is the band measured off the mockup. hero-mobile.* is
+ * encoded at exactly that aspect (1152x812, cropped out of the 1080p master),
+ * so the mockup's framing lands whole at every width in this range: nothing is
+ * cropped a second time, and nothing is up-scaled. A fixed height here would
+ * have re-cropped the already-tight framing into a letterbox slot on the
+ * wider phones and small tablets.
+ */
 @media (max-width: 778px) {
-	.rw-hero-video { height: 330px; }
-}
-
-@media (max-width: 480px) {
-	.rw-hero-video { height: 270px; }
-
-	/* The mockup shows the whole frame rather than a crop of it, slightly
-	   squashed to fit the shorter band - so the video is stretched to the box
-	   instead of cropped to it. */
-	.rw-hero-video video.rw-hero-video__media {
-		object-fit: fill;
-	}
+	.rw-hero-video { height: 70.52vw; }
 }
 
 
@@ -147,7 +183,7 @@ iframe.rw-hero-video__media {
 
 .rw-hero-copy {
 	position: absolute;
-	z-index: 2;
+	z-index: 4;
 	top: 50%;
 	left: 0;
 	right: 0;
@@ -189,9 +225,28 @@ iframe.rw-hero-video__media {
 	.rw-hero-copy { padding: 0 26px; }
 }
 
-@media (max-width: 480px) {
+/*
+ * The headline is set in vw across the whole range where the band is locked to
+ * its aspect, so the setting is a straight scale of the mockup at any width -
+ * every proportion below was measured off it at a 390px viewport:
+ *
+ *   38.4px type     -> 9.85vw     (26.7px of cap height in Worldstar)
+ *   42.3px baselines-> 1.1 leading
+ *   15.7px inset    -> 4.1vw
+ *
+ * The 13px (3.33vw) nudge is there because centring the block centres its box,
+ * and the box is top-heavy: the script's ascender adds height above the
+ * capitals that no ink balances below, which lifts the whole setting off
+ * centre.
+ */
+@media (max-width: 778px) {
+	.rw-hero-copy {
+		padding: 0 4.1vw;
+		transform: translateY(calc(-50% + 3.33vw));
+	}
+
 	.rw-hero-video .rw-hero-copy__line {
-		font-size: clamp(1.95rem, 9.4vw, 3rem);
-		line-height: 1.3;
+		font-size: 9.85vw;
+		line-height: 1.1;
 	}
 }
