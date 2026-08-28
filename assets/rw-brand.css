@@ -282,3 +282,28 @@ body .bdp_blog_template h2.title {
 		scroll-behavior: auto;
 	}
 }
+
+/* =====================================================================
+ * Wordmark band under the hero
+ *
+ * The band below the video is the brand brown rather than cream, with the
+ * name set as a script wordmark in tan.
+ * ===================================================================== */
+
+.elementor-element-3f890d8 {
+	background-color: #2A1A0D !important;
+	padding-top: 26px;
+	padding-bottom: 26px;
+}
+
+/* Elementor emits `.elementor-11 .elementor-element.elementor-element-511bd81`
+   for this heading - three classes, which beats a two-class selector. Matching
+   that shape and adding the heading class puts this one above it. */
+.elementor-11 .elementor-element.elementor-element-511bd81 .elementor-heading-title,
+.elementor-element-3f890d8 .elementor-heading-title {
+	color: #CA925C;
+	font-family: 'Classic Roots', 'Pacifico', cursive !important;
+	font-size: clamp(2rem, 7vw, 3rem);
+	line-height: 1.2;
+	text-align: center;
+}

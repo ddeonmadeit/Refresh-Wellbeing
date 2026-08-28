@@ -1,4 +1,12 @@
 @font-face {
+	font-family: 'Worldstar';
+	src: url('fonts/worldstar.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
 	font-family: 'Classic Roots';
 	src: url('fonts/classic-roots.woff2') format('woff2');
 	font-weight: 400;
@@ -74,19 +82,14 @@
 	inset: 0;
 	z-index: 1;
 	pointer-events: none;
+	/* The headline is dark ink over the bright sky, so the previous left-hand
+	   scrim is gone - it would have muddied exactly the area the text sits on.
+	   What is left is the brand wash that seats the hero against the header. */
 	background:
-		/* Left-hand scrim: the sky and sea on that side are bright, and cream
-		   text over them alone would not hold up. Kept soft so it reads as
-		   depth in the footage rather than a panel laid on top. */
-		linear-gradient(100deg,
-			rgba(38, 23, 12, 0.52) 0%,
-			rgba(38, 23, 12, 0.34) 34%,
-			rgba(38, 23, 12, 0.06) 62%,
-			rgba(38, 23, 12, 0.00) 78%),
 		linear-gradient(180deg,
-			rgba(42, 26, 14, 0.30) 0%,
-			rgba(42, 26, 14, 0.10) 38%,
-			rgba(67, 45, 26, 0.26) 100%);
+			rgba(42, 26, 14, 0.24) 0%,
+			rgba(42, 26, 14, 0.04) 34%,
+			rgba(67, 45, 26, 0.20) 100%);
 }
 
 /* Native <video> path: plain object-fit cover. */
@@ -117,11 +120,18 @@ iframe.rw-hero-video__media {
 }
 
 @media (max-width: 778px) {
-	.rw-hero-video { height: 540px; }
+	.rw-hero-video { height: 330px; }
 }
 
 @media (max-width: 480px) {
-	.rw-hero-video { height: 460px; }
+	.rw-hero-video { height: 270px; }
+
+	/* The mockup shows the whole frame rather than a crop of it, slightly
+	   squashed to fit the shorter band - so the video is stretched to the box
+	   instead of cropped to it. */
+	.rw-hero-video video.rw-hero-video__media {
+		object-fit: fill;
+	}
 }
 
 
@@ -156,20 +166,23 @@ iframe.rw-hero-video__media {
 .rw-hero-video .rw-hero-copy__line {
 	margin: 0;
 	text-align: left;
-	color: #FBF4EE;
-	/* !important is needed because the brand stylesheet sets the body face on
-	   `p` with !important; this rule wins on specificity once both are flagged.
-	   Pacifico is already heavy, so no synthetic weight or stroke is applied -
-	   either would thicken the joins and muddy the script. */
-	/* Classic Roots carries no punctuation at all - no question mark, no
-	   apostrophe. Browsers fall back per character, so Pacifico sits behind it
-	   to supply the "?" ; both are scripts, so the join is not jarring. */
-	font-family: 'Classic Roots', 'Pacifico', 'Brush Script MT', cursive !important;
-	font-size: clamp(2.3rem, 6.4vw, 5rem);
-	line-height: 1.34;
+	color: #241408;
+	font-family: 'Worldstar', 'Times New Roman', serif !important;
+	font-size: clamp(2rem, 5.6vw, 4.4rem);
+	line-height: 1.06;
 	letter-spacing: 0;
 	font-weight: 400;
-	text-shadow: 0 2px 26px rgba(30, 18, 9, 0.46);
+	text-shadow: 0 1px 14px rgba(255, 236, 214, 0.30);
+}
+
+/* "Thrive" carries the script, set larger so it sits optically level with the
+   upright capitals either side of it. */
+.rw-hero-video .rw-hero-copy__script {
+	/* !important because the brand sheet sets the body face on `span` with
+	   !important; without it the script never applies. */
+	font-family: 'Classic Roots', 'Pacifico', cursive !important;
+	font-size: 1.34em;
+	line-height: 1;
 }
 
 @media (max-width: 1024px) {
