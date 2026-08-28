@@ -56,8 +56,17 @@
 	content: '';
 	position: absolute;
 	inset: 0;
+	z-index: 1;
 	pointer-events: none;
 	background:
+		/* Left-hand scrim: the sky and sea on that side are bright, and cream
+		   text over them alone would not hold up. Kept soft so it reads as
+		   depth in the footage rather than a panel laid on top. */
+		linear-gradient(100deg,
+			rgba(38, 23, 12, 0.52) 0%,
+			rgba(38, 23, 12, 0.34) 34%,
+			rgba(38, 23, 12, 0.06) 62%,
+			rgba(38, 23, 12, 0.00) 78%),
 		linear-gradient(180deg,
 			rgba(42, 26, 14, 0.30) 0%,
 			rgba(42, 26, 14, 0.10) 38%,
@@ -97,4 +106,58 @@ iframe.rw-hero-video__media {
 
 @media (max-width: 480px) {
 	.rw-hero-video { height: 460px; }
+}
+
+
+/* ---------------------------------------------------------------------
+ * Hero headline
+ *
+ * Three lines set left, sitting in the open left-hand side of the frame.
+ * FT Overpass ships a single 400 weight, so "slightly bold" is done with a
+ * hairline stroke in the text's own colour - it thickens the letterforms
+ * evenly and keeps their flow, where a synthesised bold would thicken them
+ * unevenly and go blocky.
+ * ------------------------------------------------------------------- */
+
+.rw-hero-copy {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 0;
+	right: 0;
+	transform: translateY(-50%);
+	/* Line up with the same 1140px column the page content below uses. */
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 20px;
+	pointer-events: none;
+}
+
+/* Scoped through .rw-hero-video: the hero sits inside an
+   .elementor-widget-container, and the theme targets
+   `.elementor-widget-container p` at specificity (0,1,1), which beats a lone
+   class and forces colour and size back to inherit. */
+.rw-hero-video .rw-hero-copy__line {
+	margin: 0;
+	text-align: left;
+	color: #FBF4EE;
+	font-size: clamp(1.85rem, 5.4vw, 4rem);
+	line-height: 1.16;
+	letter-spacing: 0.002em;
+	font-weight: 400;
+	-webkit-text-stroke: 0.4px currentColor;
+	paint-order: stroke fill;
+	text-shadow: 0 1px 22px rgba(30, 18, 9, 0.42);
+	text-wrap: balance;
+}
+
+@media (max-width: 1024px) {
+	.rw-hero-copy { padding: 0 26px; }
+}
+
+@media (max-width: 480px) {
+	.rw-hero-video .rw-hero-copy__line {
+		font-size: clamp(1.7rem, 8.2vw, 2.4rem);
+		line-height: 1.18;
+	}
 }

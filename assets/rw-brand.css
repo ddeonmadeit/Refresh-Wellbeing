@@ -167,3 +167,71 @@ input[type="submit"],
 		width: auto !important;
 	}
 }
+
+/* =====================================================================
+ * Page background
+ *
+ * The theme painted pages #FEFEFE, with #F8F8F8 and #FFFFFF panels on the
+ * blog - a cold white against the warm cream (#FBF4EE) the content sections
+ * already use, so those pages read as a different site. Standardised on the
+ * cream that was already in the palette.
+ *
+ * Form fields are deliberately left white: they are input affordances rather
+ * than page background, and tinting them flattens the distinction.
+ * ===================================================================== */
+
+:root {
+	--rw-cream: #FBF4EE;
+}
+
+body {
+	background-color: var(--rw-cream);
+}
+
+/* Blog listing and article panels. */
+.bdp_blog_template.news,
+.preloader,
+li.trackback,
+.author-box,
+.accordion-content,
+.blog-post,
+.post-content,
+.posts-container,
+.content-side {
+	background-color: var(--rw-cream);
+}
+
+/*
+ * The blog plugin paints its own panels white, and does it from a <style>
+ * block injected into the body - which lands after this stylesheet in
+ * document order, so ordinary specificity cannot reach it. Hence the
+ * !important here, scoped tightly to the plugin's own containers.
+ */
+.blog-text,
+.content-typography,
+.blog_template,
+.bdp_blog_template,
+.bdp_blog_template.news {
+	background-color: var(--rw-cream) !important;
+}
+
+/* Headings and links inside those cards were inheriting an opaque white
+   patch of their own; let the card colour show through instead. */
+.bdp_blog_template .title,
+.bdp_blog_template .title a,
+.bdp_blog_template p,
+.bdp_blog_template .bdp-post-content,
+h2.title,
+h2.title a {
+	background-color: transparent !important;
+}
+
+/* The plugin also sets `background: #fff !important` on its post-title links
+   from that same body-injected block, at a higher specificity than the rule
+   above. Prefixing with `body` outranks it without resorting to an id. */
+body .bdp_blog_template .blog_header h2 a,
+body .bdp_blog_template .blog_header h2,
+body .bdp_blog_template h2.title a,
+body .bdp_blog_template h2.title {
+	background-color: transparent !important;
+}
