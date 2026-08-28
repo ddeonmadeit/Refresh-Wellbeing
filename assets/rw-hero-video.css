@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'Pacifico';
+	src: url('fonts/pacifico-regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
 /*
  * Refresh Wellbeing - homepage hero background video.
  *
@@ -141,14 +149,16 @@ iframe.rw-hero-video__media {
 	margin: 0;
 	text-align: left;
 	color: #FBF4EE;
-	font-size: clamp(1.85rem, 5.4vw, 4rem);
-	line-height: 1.16;
-	letter-spacing: 0.002em;
+	/* !important is needed because the brand stylesheet sets the body face on
+	   `p` with !important; this rule wins on specificity once both are flagged.
+	   Pacifico is already heavy, so no synthetic weight or stroke is applied -
+	   either would thicken the joins and muddy the script. */
+	font-family: 'Pacifico', 'Segoe Script', 'Brush Script MT', cursive !important;
+	font-size: clamp(2.3rem, 6.4vw, 5rem);
+	line-height: 1.34;
+	letter-spacing: 0;
 	font-weight: 400;
-	-webkit-text-stroke: 0.4px currentColor;
-	paint-order: stroke fill;
-	text-shadow: 0 1px 22px rgba(30, 18, 9, 0.42);
-	text-wrap: balance;
+	text-shadow: 0 2px 26px rgba(30, 18, 9, 0.46);
 }
 
 @media (max-width: 1024px) {
@@ -157,7 +167,7 @@ iframe.rw-hero-video__media {
 
 @media (max-width: 480px) {
 	.rw-hero-video .rw-hero-copy__line {
-		font-size: clamp(1.7rem, 8.2vw, 2.4rem);
-		line-height: 1.18;
+		font-size: clamp(1.95rem, 9.4vw, 3rem);
+		line-height: 1.3;
 	}
 }
