@@ -328,3 +328,33 @@
 		z-index: 1;
 	}
 }
+
+/* =====================================================================
+ * Menu toggle icon
+ *
+ * The theme used Font Awesome's align-justify glyph - four square-ended
+ * bars. Replaced in the markup with three rounded strokes; this centres
+ * and sizes them within the button.
+ * ===================================================================== */
+
+.wl_hf-nav-menu__toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wl_hf-nav-menu__toggle .wl_hf-nav-menu-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 0;
+}
+
+.wl_hf-nav-menu__toggle .rw-burger-icon {
+	display: block;
+	width: 26px;
+	height: 26px;
+	/* The theme pads buttons generously; a fixed box keeps the three strokes
+	   optically centred rather than riding high in the button. */
+	margin: 0;
+}
