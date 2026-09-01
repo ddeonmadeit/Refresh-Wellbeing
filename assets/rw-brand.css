@@ -316,3 +316,50 @@ body .bdp_blog_template h2.title {
 	line-height: 1.2;
 	text-align: center;
 }
+
+
+/* =====================================================================
+ * Acuity Scheduling embeds
+ *
+ * The class booking on the Yoga page and the vouchers on the Gift Vouchers
+ * page are both frames served from the studio's own Acuity account. Acuity's
+ * embed.js measures the frame's contents and sets its height, so the height
+ * attribute in the markup is only a starting value and there must be no
+ * fixed height here to fight it.
+ * ===================================================================== */
+
+.rw-acuity {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 20px 8px;
+}
+
+.rw-acuity iframe {
+	display: block;
+	width: 100%;
+	min-height: 620px;
+	border: 0;
+	border-radius: 18px;
+	background-color: #FBF4EE;
+}
+
+.rw-acuity__intro,
+.rw-acuity__fallback {
+	max-width: 1140px;
+	margin: 0 auto 22px;
+	padding: 0 20px;
+	text-align: center;
+	line-height: 1.7;
+}
+
+@media (max-width: 778px) {
+	.rw-acuity { padding: 0 14px 4px; }
+
+	.rw-acuity iframe {
+		min-height: 560px;
+		border-radius: 14px;
+	}
+
+	.rw-acuity__intro,
+	.rw-acuity__fallback { padding: 0 14px; }
+}
