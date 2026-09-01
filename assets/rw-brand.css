@@ -467,6 +467,16 @@ body .bdp_blog_template h2.title {
 	line-height: 1.75;
 }
 
+/* The intro is set as separate blocks so the blank lines between them are real
+   paragraph breaks rather than stacked <br>s, and the address stays on its own
+   line under the sentence that introduces it. */
+.rw-classes__intro > p {
+	margin: 0 0 1.1em;
+	line-height: 1.75;
+}
+
+.rw-classes__intro > p:last-child { margin-bottom: 0; }
+
 .rw-classes__note { margin-bottom: 18px; }
 
 .rw-classes__group {
