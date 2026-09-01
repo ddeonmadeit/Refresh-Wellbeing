@@ -363,3 +363,150 @@ body .bdp_blog_template h2.title {
 	.rw-acuity__intro,
 	.rw-acuity__fallback { padding: 0 14px; }
 }
+
+
+/* =====================================================================
+ * Yoga class listing
+ *
+ * The classes, durations, prices and descriptions are the studio's own,
+ * transcribed from its Acuity account so the page reads in the site's
+ * typography rather than inside a grey booking frame. Each card books
+ * straight into that appointment type; the live timetable frame sits below.
+ * ===================================================================== */
+
+.rw-classes {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.rw-classes__intro,
+.rw-classes__note {
+	max-width: 640px;
+	margin: 0 auto 30px;
+	text-align: center;
+	line-height: 1.75;
+}
+
+.rw-classes__note { margin-bottom: 18px; }
+
+.rw-classes__group {
+	margin: 42px 0 20px;
+	text-align: center;
+	font-size: clamp(1.5rem, 3.4vw, 2rem);
+	line-height: 1.3;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-classes__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 18px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* The theme paints list bullets and margins on `li` site-wide. */
+.rw-classes__grid > .rw-class {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 26px 24px 24px;
+	list-style: none;
+	background-color: #FFFFFF;
+	border-radius: 20px;
+	box-shadow: 0 2px 18px rgba(67, 45, 26, 0.07);
+}
+
+.rw-class__name {
+	margin: 0 0 10px;
+	font-size: 1.18rem;
+	line-height: 1.35;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-class__meta {
+	display: flex;
+	gap: 14px;
+	align-items: baseline;
+	margin: 0 0 14px;
+	font-size: 0.95rem;
+	color: var(--rw-accent, #CA925C);
+}
+
+.rw-class__price { font-weight: 600; }
+
+.rw-class__desc {
+	margin: 0 0 20px;
+	font-size: 0.96rem;
+	line-height: 1.7;
+}
+
+/* Pushes the button to the bottom edge so cards of differing description
+   length still line their buttons up. */
+.rw-class__book {
+	align-self: flex-start;
+	margin-top: auto;
+	padding: 11px 26px;
+	border-radius: 999px;
+	background-color: var(--rw-ink, #432D1A);
+	color: #FBF4EE !important;
+	font-size: 0.95rem;
+	line-height: 1;
+	text-decoration: none;
+	transition: background-color 160ms ease;
+}
+
+.rw-class__book:hover,
+.rw-class__book:focus { background-color: var(--rw-accent, #CA925C); }
+
+/* Names the class for a screen reader without repeating it on screen. */
+.rw-class__sr {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.rw-passes {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 10px;
+	margin: 0 0 26px;
+	padding: 0;
+	list-style: none;
+}
+
+.rw-passes > .rw-pass {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	margin: 0;
+	padding: 14px 20px;
+	list-style: none;
+	background-color: #FFFFFF;
+	border-radius: 14px;
+}
+
+.rw-pass__price {
+	color: var(--rw-accent, #CA925C);
+	font-weight: 600;
+}
+
+.rw-classes__cta { text-align: center; }
+
+.rw-classes__cta .rw-class__book { align-self: center; display: inline-block; }
+
+@media (max-width: 778px) {
+	.rw-classes { padding: 0 14px; }
+
+	.rw-classes__grid { grid-template-columns: 1fr; gap: 14px; }
+
+	.rw-classes__grid > .rw-class { padding: 22px 20px 20px; }
+
+	.rw-passes { grid-template-columns: 1fr; }
+}
