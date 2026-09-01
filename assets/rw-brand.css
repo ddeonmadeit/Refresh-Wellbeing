@@ -558,10 +558,10 @@ body .bdp_blog_template h2.title {
  * Homepage category circles
  *
  * Sits directly under the wordmark and carries the same brown, so the two
- * read as one continuous band rather than a brown strip above a pale one.
- * Three across at every width, as asked - which is why the label sits under
- * each circle rather than over it: at a third of a 390px screen there is no
- * room to set a word legibly across the photo.
+ * read as one continuous band. Each circle is a button first and a photograph
+ * second: the image is desaturated and darkened, then a brown wash is laid
+ * over it, so the photo reads as texture behind the word rather than as a
+ * picture competing with it. The label sits on top in cream.
  * ===================================================================== */
 
 .rw-circles-band {
@@ -589,20 +589,22 @@ body .bdp_blog_template h2.title {
 }
 
 .rw-circle {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 14px;
+	position: relative;
+	display: block;
 	text-decoration: none;
 }
 
 .rw-circle__media {
+	position: relative;
 	display: block;
 	width: 100%;
 	aspect-ratio: 1 / 1;
 	overflow: hidden;
 	border-radius: 50%;
 	background-color: #43301E;
+	/* A hairline of the brand tan, so the circle has an edge against the
+	   brown without needing a hard border. */
+	box-shadow: inset 0 0 0 1px rgba(202, 146, 92, 0.28);
 }
 
 .rw-circle__media img {
@@ -610,39 +612,456 @@ body .bdp_blog_template h2.title {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	/* Seats the photography against the brand palette, the same grade the
-	   hero footage carries. */
-	filter: saturate(0.86) brightness(0.97);
-	transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+	/* Tinted into the brand brown rather than merely dimmed. Stripping the
+	   colour first and rebuilding it through sepia gives a single warm
+	   monotone, so three photographs shot in different light still read as
+	   one set of buttons against the band. Dimming alone left them grey. */
+	filter: grayscale(1) sepia(0.92) saturate(1.45) hue-rotate(-10deg)
+	        brightness(0.78) contrast(0.95);
+	transition: transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1),
+	            filter 320ms ease;
 }
 
-a.rw-circle:hover .rw-circle__media img,
-a.rw-circle:focus-visible .rw-circle__media img { transform: scale(1.06); }
+/* The brown wash. Slightly deeper at the foot of the circle, which seats the
+   label without needing a hard scrim behind the text. */
+.rw-circle__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 50% 40%,
+			rgba(42, 26, 13, 0.20) 0%,
+			rgba(42, 26, 13, 0.38) 64%,
+			rgba(42, 26, 13, 0.56) 100%);
+	transition: opacity 320ms ease;
+}
 
 .rw-circle__label {
-	display: block;
-	color: #CA925C;
-	font-size: clamp(0.92rem, 3.4vw, 1.15rem);
-	line-height: 1.35;
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0 5%;
+	color: #FBF4EE;
+	/* "TREATMENTS" is the constraint: ten caps at roughly 0.64em apiece is
+	   about 6.4em of line, and it has to sit inside a circle that is a third
+	   of the viewport. These bounds put it as large as fits at both ends. */
+	font-size: clamp(0.82rem, 3.9vw, 2.05rem);
+	line-height: 1.2;
+	letter-spacing: 0.04em;
 	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 1px 10px rgba(26, 15, 6, 0.45);
 }
-
-a.rw-circle:hover .rw-circle__label,
-a.rw-circle:focus-visible .rw-circle__label { color: #FBF4EE; }
 
 .rw-circle__note {
 	display: block;
-	margin-top: 2px;
-	color: rgba(251, 244, 238, 0.55);
-	font-size: 0.78em;
+	margin-top: 6px;
+	color: rgba(251, 244, 238, 0.72);
+	font-size: 0.66em;
+	letter-spacing: 0.06em;
 	line-height: 1.3;
+	text-transform: none;
 }
 
-/* The retreats circle is not a link yet; it should not read as one. */
-.rw-circle--soon .rw-circle__media img { filter: saturate(0.5) brightness(0.82); }
+/* Hover lifts the wash a little and eases the photograph up - enough to read
+   as pressable, not enough to turn back into a picture. */
+a.rw-circle:hover .rw-circle__media img,
+a.rw-circle:focus-visible .rw-circle__media img {
+	transform: scale(1.05);
+	filter: grayscale(1) sepia(0.92) saturate(1.7) hue-rotate(-10deg)
+	        brightness(0.94) contrast(0.95);
+}
+
+a.rw-circle:hover .rw-circle__media::after,
+a.rw-circle:focus-visible .rw-circle__media::after { opacity: 0.72; }
+
+a.rw-circle:focus-visible .rw-circle__media {
+	box-shadow: inset 0 0 0 2px rgba(202, 146, 92, 0.85);
+}
+
+/* Retreats has no page yet, so it is held further back than the two that do. */
+.rw-circle--soon .rw-circle__media img { filter: grayscale(1) sepia(0.92) saturate(1.2)
+	                                        hue-rotate(-10deg) brightness(0.6); }
+
+.rw-circle--soon .rw-circle__label { color: rgba(251, 244, 238, 0.88); }
 
 @media (max-width: 480px) {
 	.rw-circles-band { padding: 2px 12px 40px; }
 	.rw-circles { gap: 10px; }
-	.rw-circle { gap: 10px; }
+	.rw-circle__label { padding: 0 4%; letter-spacing: 0.02em; }
+}
+
+
+/* =====================================================================
+ * Enquiry form (retreats)
+ * ===================================================================== */
+
+.rw-enquiry {
+	max-width: 560px;
+	margin: 0 auto;
+	padding: 0 20px 10px;
+}
+
+.rw-enquiry__intro {
+	margin: 0 0 30px;
+	text-align: center;
+	line-height: 1.75;
+}
+
+.rw-field { margin: 0 0 22px; }
+
+.rw-field__label {
+	display: block;
+	margin: 0 0 8px;
+	font-size: 0.94rem;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-field__input {
+	display: block;
+	width: 100%;
+	padding: 14px 16px;
+	border: 1px solid rgba(67, 45, 26, 0.22);
+	border-radius: 14px;
+	background-color: #FFFFFF;
+	color: var(--rw-ink, #432D1A);
+	font-family: inherit;
+	font-size: 1rem;
+	line-height: 1.4;
+	transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.rw-field__input::placeholder { color: rgba(67, 45, 26, 0.38); }
+
+.rw-field__input:focus {
+	outline: none;
+	border-color: var(--rw-accent, #CA925C);
+	box-shadow: 0 0 0 3px rgba(202, 146, 92, 0.24);
+}
+
+.rw-field__input[aria-invalid="true"] { border-color: #A2442B; }
+
+.rw-field__error {
+	margin: 8px 0 0;
+	color: #A2442B;
+	font-size: 0.87rem;
+	line-height: 1.5;
+}
+
+/* Segmented control. Radios stay in the DOM and keep their semantics; the
+   visible face is the sibling span. */
+.rw-tabs {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+	padding: 6px;
+	border-radius: 999px;
+	background-color: rgba(67, 45, 26, 0.08);
+}
+
+.rw-tab { display: block; margin: 0; cursor: pointer; }
+
+.rw-tab__input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.rw-tab__face {
+	display: block;
+	padding: 11px 10px;
+	border-radius: 999px;
+	color: var(--rw-ink, #432D1A);
+	font-size: 0.95rem;
+	line-height: 1;
+	text-align: center;
+	transition: background-color 180ms ease, color 180ms ease;
+}
+
+.rw-tab__input:checked + .rw-tab__face {
+	background-color: var(--rw-ink, #432D1A);
+	color: #FBF4EE;
+}
+
+.rw-tab__input:focus-visible + .rw-tab__face {
+	box-shadow: 0 0 0 3px rgba(202, 146, 92, 0.55);
+}
+
+.rw-form__submit {
+	display: block;
+	width: 100%;
+	margin: 30px 0 0;
+	padding: 15px 26px;
+	border: 0;
+	border-radius: 999px;
+	background-color: var(--rw-ink, #432D1A);
+	color: #FBF4EE;
+	font-family: inherit;
+	font-size: 1rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 160ms ease;
+}
+
+.rw-form__submit:hover,
+.rw-form__submit:focus-visible { background-color: var(--rw-accent, #CA925C); }
+
+.rw-form__privacy {
+	margin: 14px 0 0;
+	color: rgba(67, 45, 26, 0.62);
+	font-size: 0.85rem;
+	line-height: 1.6;
+	text-align: center;
+}
+
+.rw-form__done {
+	padding: 30px 24px;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+	text-align: center;
+	box-shadow: 0 2px 18px rgba(67, 45, 26, 0.07);
+}
+
+.rw-form__done-title { margin: 0 0 10px; font-size: 1.3rem; }
+.rw-form__done-body  { margin: 0 0 20px; line-height: 1.7; }
+
+.rw-form__mailto {
+	display: inline-block;
+	padding: 13px 28px;
+	border-radius: 999px;
+	background-color: var(--rw-ink, #432D1A);
+	color: #FBF4EE !important;
+	font-size: 0.98rem;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.rw-form__mailto:hover,
+.rw-form__mailto:focus-visible { background-color: var(--rw-accent, #CA925C); }
+
+@media (max-width: 778px) {
+	.rw-enquiry { padding: 0 16px 8px; }
+}
+
+
+/* =====================================================================
+ * Dashboard (/dash)
+ *
+ * Counts are hero numbers; the two rankings are single-hue horizontal bars
+ * with the value written on each row, so neither needs a legend or an axis.
+ * The bar hue is the brand tan carrying magnitude only - it never encodes
+ * identity, so there is no categorical palette here to keep separable.
+ * ===================================================================== */
+
+.rw-dash {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 20px 20px;
+}
+
+.rw-dash__notice {
+	margin: 0 0 32px;
+	padding: 18px 20px;
+	border-left: 3px solid var(--rw-accent, #CA925C);
+	border-radius: 0 14px 14px 0;
+	background-color: rgba(202, 146, 92, 0.10);
+	font-size: 0.92rem;
+	line-height: 1.7;
+}
+
+.rw-stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
+	margin: 0 0 12px;
+	padding: 0;
+	list-style: none;
+}
+
+.rw-stats > .rw-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: 0;
+	padding: 22px 20px;
+	list-style: none;
+	background-color: #FFFFFF;
+	border-radius: 18px;
+	box-shadow: 0 2px 18px rgba(67, 45, 26, 0.07);
+}
+
+.rw-stat__value {
+	font-size: clamp(1.8rem, 5vw, 2.6rem);
+	line-height: 1.1;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-stat__label {
+	font-size: 0.86rem;
+	line-height: 1.4;
+	color: rgba(67, 45, 26, 0.62);
+}
+
+.rw-dash__section { margin: 38px 0 0; }
+
+.rw-dash__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	flex-wrap: wrap;
+}
+
+.rw-dash__title {
+	margin: 0 0 16px;
+	font-size: 1.2rem;
+	line-height: 1.3;
+}
+
+.rw-dash__head .rw-dash__title { margin-bottom: 16px; }
+
+.rw-dash__btn {
+	padding: 10px 20px;
+	border: 0;
+	border-radius: 999px;
+	background-color: var(--rw-ink, #432D1A);
+	color: #FBF4EE;
+	font-family: inherit;
+	font-size: 0.88rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 160ms ease;
+}
+
+.rw-dash__btn:hover,
+.rw-dash__btn:focus-visible { background-color: var(--rw-accent, #CA925C); }
+
+.rw-dash__btn--quiet {
+	background-color: transparent;
+	border: 1px solid rgba(67, 45, 26, 0.28);
+	color: rgba(67, 45, 26, 0.75);
+}
+
+.rw-dash__btn--quiet:hover,
+.rw-dash__btn--quiet:focus-visible {
+	background-color: #A2442B;
+	border-color: #A2442B;
+	color: #FBF4EE;
+}
+
+.rw-dash__empty {
+	margin: 0;
+	padding: 22px 20px;
+	border-radius: 16px;
+	background-color: rgba(67, 45, 26, 0.05);
+	color: rgba(67, 45, 26, 0.68);
+	font-size: 0.92rem;
+	line-height: 1.7;
+}
+
+/* ---- ranked bars ---- */
+
+.rw-bars { margin: 0; padding: 0; list-style: none; }
+
+.rw-bars > .rw-bar {
+	margin: 0 0 16px;
+	padding: 0;
+	list-style: none;
+}
+
+.rw-bar__head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 14px;
+	margin: 0 0 6px;
+}
+
+.rw-bar__label {
+	overflow: hidden;
+	font-size: 0.94rem;
+	line-height: 1.4;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* The count is text, in ink - the bar beside it carries the magnitude. */
+.rw-bar__value {
+	flex: none;
+	font-size: 0.94rem;
+	font-weight: 600;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-bar__track {
+	height: 8px;
+	border-radius: 999px;
+	background-color: rgba(67, 45, 26, 0.08);
+}
+
+.rw-bar__fill {
+	height: 100%;
+	border-radius: 999px;
+	background-color: var(--rw-accent, #CA925C);
+}
+
+.rw-bar__sub {
+	margin: 5px 0 0;
+	overflow: hidden;
+	color: rgba(67, 45, 26, 0.5);
+	font-size: 0.78rem;
+	line-height: 1.4;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* ---- enquiries table ---- */
+
+.rw-table__scroll { overflow-x: auto; }
+
+.rw-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92rem;
+}
+
+.rw-table th {
+	padding: 10px 14px 10px 0;
+	border-bottom: 1px solid rgba(67, 45, 26, 0.16);
+	color: rgba(67, 45, 26, 0.62);
+	font-weight: 400;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.rw-table td {
+	padding: 13px 14px 13px 0;
+	border-bottom: 1px solid rgba(67, 45, 26, 0.08);
+	line-height: 1.5;
+	vertical-align: top;
+}
+
+.rw-table__when { color: rgba(67, 45, 26, 0.6); white-space: nowrap; }
+
+.rw-table__tag {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 2px 9px;
+	border-radius: 999px;
+	background-color: rgba(202, 146, 92, 0.18);
+	color: rgba(67, 45, 26, 0.72);
+	font-size: 0.74rem;
+	line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+	.rw-dash { padding: 0 16px 16px; }
+	.rw-stats { grid-template-columns: 1fr; }
 }
