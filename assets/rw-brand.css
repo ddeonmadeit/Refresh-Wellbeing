@@ -522,6 +522,15 @@ body .bdp_blog_template h2.title {
 	color: var(--rw-ink, #432D1A);
 }
 
+/* When and where a class actually runs - the one thing a timetable frame
+   further down the page cannot tell someone at a glance. */
+.rw-class__when {
+	margin: 0 0 8px;
+	color: var(--rw-ink, #432D1A);
+	font-size: 0.92rem;
+	line-height: 1.45;
+}
+
 .rw-class__meta {
 	display: flex;
 	gap: 14px;
