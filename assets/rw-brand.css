@@ -293,7 +293,16 @@ body .bdp_blog_template h2.title {
 .elementor-element-3f890d8 {
 	background-color: #2A1A0D !important;
 	padding-top: 26px;
-	padding-bottom: 26px;
+	padding-bottom: 46px;
+}
+
+/* Elementor's own container padding puts 60px above the wordmark and 30px
+   below, which left it floating in the middle of the band with a wide empty
+   gap over it. Spacing is driven from the band itself instead, so the
+   wordmark sits up near the top of the brown. */
+.elementor-element-3f890d8 > .e-con-inner {
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 /* Elementor emits `.elementor-11 .elementor-element.elementor-element-511bd81`

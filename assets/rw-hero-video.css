@@ -242,11 +242,15 @@ iframe.rw-hero-video__media {
 @media (max-width: 778px) {
 	.rw-hero-copy {
 		padding: 0 4.1vw;
-		transform: translateY(calc(-50% + 3.33vw));
+		/* No optical correction on top of the centring: line one's line box
+		   grows to fit the script's ascender on "Th", and that extra height
+		   above the capitals balances line two's descender almost exactly.
+		   Measured on the rendered page the ink's own centre lands within a
+		   third of a pixel of the band's. An offset here pushed it low. */
 	}
 
 	.rw-hero-video .rw-hero-copy__line {
-		font-size: 9.85vw;
+		font-size: 9.1vw;
 		line-height: 1.1;
 	}
 }
