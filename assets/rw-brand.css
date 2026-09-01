@@ -295,11 +295,18 @@ body .bdp_blog_template h2.title {
 	to   { transform: translateX(-50%); }
 }
 
-/* Reading one of them should not be a race. */
-.rw-quotes__viewport:hover .rw-quotes__track,
-.rw-quotes__viewport:focus-within .rw-quotes__track {
-	animation-play-state: paused;
+/* The row never stops - not on hover, not on tap. rw-quotes.js takes the
+   transform over and lets a swipe or a scroll shove it along instead; the
+   keyframes above stay as the no-JavaScript fallback. A keyframe animation
+   cannot have its speed changed mid-flight without jumping, which is why the
+   script drives it directly rather than rewriting the duration. */
+.rw-quotes__track.is-js {
+	animation: none;
+	will-change: transform;
 }
+
+/* A horizontal drag over the row is the row's, not the page's. */
+.rw-quotes__viewport { touch-action: pan-y; }
 
 .rw-quotes__track > .rw-quote {
 	display: flex;
