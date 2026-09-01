@@ -1167,3 +1167,176 @@ a.rw-circle:focus-visible .rw-circle__media {
 	.rw-dash { padding: 0 16px 16px; }
 	.rw-stats { grid-template-columns: 1fr; }
 }
+
+
+/* =====================================================================
+ * iOS Safari: the areas above and below the page
+ *
+ * Safari paints its overscroll areas - behind the status bar at the top and
+ * the home indicator at the bottom - with the canvas colour, which it takes
+ * from `html` (or from `body` when `html` has none). The body is cream, so
+ * both strips came out cream against a site whose header and footer bars are
+ * brown. Giving `html` the brown fixes both ends; body keeps the cream for
+ * the page content itself.
+ *
+ * The matching `theme-color` meta tag in each page's head tints Safari's own
+ * toolbars to match.
+ * ===================================================================== */
+
+html { background-color: #2A1A0D; }
+
+/* =====================================================================
+ * Homepage closing image band
+ *
+ * It was an empty container at `min-height: 100vh` - a whole screen of
+ * photograph with nothing in it - pinned with `background-attachment: fixed`.
+ * iOS Safari has never supported fixed attachment properly: it sizes the
+ * image to the viewport rather than the element and leaves it misaligned as
+ * the page scrolls, which is most of why this section looked broken on a
+ * phone. Scrolls with the page now, at a height that reads as a band rather
+ * than a screen of its own.
+ * ===================================================================== */
+
+.elementor-11 .elementor-element.elementor-element-5e1acfc {
+	--min-height: 300px;
+	min-height: 300px;
+	background-attachment: scroll !important;
+}
+
+@media (min-width: 779px) {
+	.elementor-11 .elementor-element.elementor-element-5e1acfc {
+		--min-height: 420px;
+		min-height: 420px;
+	}
+}
+
+
+/* =====================================================================
+ * Contact page
+ *
+ * The form is WPForms' markup with its own stylesheet: 3px corners, a hairline
+ * black border and a stock blue submit button. Restyled here to the same
+ * language as the retreat form - rounded, white on the brown, tan focus ring,
+ * brown pill button.
+ *
+ * Font size stays at 16px on the inputs on purpose: below that, iOS Safari
+ * zooms the page in when a field takes focus and does not zoom back out.
+ * ===================================================================== */
+
+.wpforms-container .wpforms-field-medium,
+.wpforms-container .wpforms-field-large,
+.wpforms-container input[type="text"],
+.wpforms-container input[type="email"],
+.wpforms-container input[type="tel"],
+.wpforms-container input[type="number"],
+.wpforms-container textarea {
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 14px 16px !important;
+	border: 1px solid rgba(202, 146, 92, 0.34) !important;
+	border-radius: 14px !important;
+	background-color: #FFFFFF !important;
+	color: var(--rw-ink, #432D1A) !important;
+	font-family: inherit !important;
+	font-size: 16px !important;
+	line-height: 1.4 !important;
+	-webkit-appearance: none;
+	appearance: none;
+	box-shadow: none !important;
+	transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.wpforms-container textarea { min-height: 130px !important; resize: vertical; }
+
+.wpforms-container input::placeholder,
+.wpforms-container textarea::placeholder { color: rgba(67, 45, 26, 0.42); }
+
+.wpforms-container input:focus,
+.wpforms-container textarea:focus {
+	outline: none;
+	border-color: var(--rw-accent, #CA925C) !important;
+	box-shadow: 0 0 0 3px rgba(202, 146, 92, 0.28) !important;
+}
+
+.wpforms-container input[aria-invalid="true"],
+.wpforms-container textarea[aria-invalid="true"] { border-color: #E0A38C !important; }
+
+/* The number field's spinners have no business on a phone number. */
+.wpforms-container input[type="number"] { -moz-appearance: textfield; }
+.wpforms-container input[type="number"]::-webkit-outer-spin-button,
+.wpforms-container input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.wpforms-container .wpforms-field { padding: 0 0 16px !important; }
+
+.wpforms-container .wpforms-field-label,
+.wpforms-container .wpforms-field-sublabel {
+	color: rgba(251, 244, 238, 0.78) !important;
+	font-size: 0.88rem !important;
+	font-weight: 400 !important;
+}
+
+.rw-formerr {
+	margin: 8px 0 0;
+	color: #E8B4A0;
+	font-size: 0.85rem;
+	line-height: 1.5;
+}
+
+.wpforms-container .wpforms-submit,
+.wpforms-container button[type="submit"] {
+	width: 100%;
+	padding: 15px 30px !important;
+	border: 0 !important;
+	border-radius: 999px !important;
+	background-color: var(--rw-accent, #CA925C) !important;
+	color: #2A1A0D !important;
+	font-family: inherit !important;
+	font-size: 1rem !important;
+	line-height: 1 !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: background-color 160ms ease;
+}
+
+.wpforms-container .wpforms-submit:hover,
+.wpforms-container .wpforms-submit:focus-visible {
+	background-color: #FBF4EE !important;
+}
+
+/* The confirmation panel sits on the brown, unlike the retreats one. */
+.rw-contact__done {
+	background-color: rgba(251, 244, 238, 0.06);
+	box-shadow: inset 0 0 0 1px rgba(202, 146, 92, 0.22);
+}
+
+.rw-contact__done .rw-form__done-title,
+.rw-contact__done .rw-form__done-body { color: #FBF4EE; }
+
+.rw-contact__done .rw-form__privacy { color: rgba(251, 244, 238, 0.6); }
+
+.rw-contact__done .rw-form__mailto {
+	background-color: var(--rw-accent, #CA925C);
+	color: #2A1A0D !important;
+}
+
+/* The two social icons were in a one-column grid, which stacked them and left
+   one adrift at the right. A row, aligned with the text above them. */
+.elementor-element-8cbd5b1 {
+	display: flex !important;
+	grid-template-columns: none !important;
+	flex-direction: row !important;
+	flex-wrap: wrap;
+	gap: 14px !important;
+	justify-content: flex-start !important;
+	align-items: center;
+}
+
+.elementor-element-8cbd5b1 > .elementor-widget { width: auto !important; }
+
+/* The map is decorative here; a full 400px of it on a phone is a lot. */
+@media (max-width: 778px) {
+	.elementor-element-319c1ef iframe { height: 260px !important; }
+}
