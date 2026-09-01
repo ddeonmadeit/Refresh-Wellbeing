@@ -593,6 +593,19 @@ body .bdp_blog_template h2.title {
 @media (max-width: 778px) {
 	.rw-classes { padding: 0 14px; }
 
+	/* The intro inherits 20px from the theme, which broke "…by the water."
+	   onto a line of its own. Sized in vw instead, so the text keeps the same
+	   proportion of the column at every phone width and the wrap lands in the
+	   same place - checked at 320, 360, 390 and 430. */
+	/* On the paragraphs, not just the wrapper: the theme sets `p { font-size:
+	   1rem }` as a bare element rule, and a directly-matching rule beats an
+	   inherited value however specific the ancestor's selector is. */
+	.rw-classes__intro,
+	.rw-classes__intro > p {
+		font-size: 3.85vw;
+		line-height: 1.65;
+	}
+
 	.rw-classes__grid { grid-template-columns: 1fr; gap: 14px; }
 
 	.rw-classes__grid > .rw-class { padding: 22px 20px 20px; }
