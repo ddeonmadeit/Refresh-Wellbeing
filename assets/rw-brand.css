@@ -237,50 +237,129 @@ body .bdp_blog_template h2.title {
 }
 
 /* =====================================================================
- * Testimonials - horizontal scroller
+ * Testimonials - autoscrolling marquee
  *
- * The three testimonials sit in a flex row that wraps. On desktop they
- * fit side by side in ~484px, but once the row wraps they stack and the
- * section grows to about 1348px on a phone - a huge amount of vertical
- * space for three quotes.
+ * The three quotes used to stack, running the section to roughly 1348px on a
+ * phone for three paragraphs. They now sit in a single row that scrolls itself,
+ * slowly and on a loop.
  *
- * Below the desktop breakpoint the row is kept on one line and becomes a
- * snap scroller instead. Cards sit at 86% width so the next one peeks in
- * at the edge, which is what signals it can be swiped - no dots needed.
+ * The track holds two identical runs of the cards and travels exactly one run
+ * before repeating, so the seam never shows. That only stays exact if each card
+ * carries its own trailing margin rather than the row using `gap`: with `gap`
+ * the two halves differ by one gap and the loop drifts a little further out of
+ * step on every pass.
  * ===================================================================== */
 
-@media (max-width: 1024px) {
+.rw-quotes {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	padding: 40px 0 46px;
+	background-color: #2A1A0D;
+}
 
-	.elementor-element-e9f3825 {
-		flex-wrap: nowrap !important;
+.rw-quotes__head {
+	max-width: 1140px;
+	margin: 0 auto 22px;
+	padding: 0 20px;
+}
+
+.rw-quotes__title {
+	margin: 0;
+	color: var(--rw-accent, #CA925C) !important;
+	font-size: clamp(1.1rem, 2.6vw, 1.5rem) !important;
+	line-height: 1.3 !important;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.rw-quotes__viewport {
+	overflow: hidden;
+	/* Fades the cards into the brown at both edges rather than cutting them. */
+	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+	mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.rw-quotes__track {
+	display: flex;
+	width: max-content;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	animation: rw-marquee 64s linear infinite;
+}
+
+@keyframes rw-marquee {
+	from { transform: translateX(0); }
+	to   { transform: translateX(-50%); }
+}
+
+/* Reading one of them should not be a race. */
+.rw-quotes__viewport:hover .rw-quotes__track,
+.rw-quotes__viewport:focus-within .rw-quotes__track {
+	animation-play-state: paused;
+}
+
+.rw-quotes__track > .rw-quote {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	width: 300px;
+	/* The trailing margin is the gap - see the note above. */
+	margin: 0 16px 0 0;
+	padding: 22px 22px 20px;
+	list-style: none;
+	border-radius: 18px;
+	background-color: rgba(251, 244, 238, 0.05);
+	box-shadow: inset 0 0 0 1px rgba(202, 146, 92, 0.18);
+}
+
+/* The theme dresses every `blockquote` as a pull-quote: white ground, a grey
+   ink and 35px of padding. All three are reset here, or the cream text would
+   sit invisibly on a white slab inside the card. */
+.rw-quote__text {
+	padding: 0;
+	border: 0;
+	background: none;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin: 0 0 14px;
+	color: rgba(251, 244, 238, 0.86);
+	font-size: 0.86rem;
+	line-height: 1.65;
+}
+
+.rw-quote__name {
+	margin: 0;
+	color: var(--rw-accent, #CA925C);
+	font-size: 0.82rem;
+	line-height: 1.4;
+	letter-spacing: 0.04em;
+}
+
+.rw-quote__name::before { content: '\2014\00a0'; }
+
+@media (max-width: 778px) {
+	.rw-quotes { padding: 30px 0 34px; }
+	.rw-quotes__head { padding: 0 16px; margin-bottom: 16px; }
+	.rw-quotes__track > .rw-quote { width: 258px; margin-right: 12px; padding: 18px 18px 16px; }
+	.rw-quote__text { font-size: 0.82rem; -webkit-line-clamp: 6; }
+}
+
+/* With motion turned down the row stops moving and becomes a plain swipe. */
+@media (prefers-reduced-motion: reduce) {
+	.rw-quotes__track { animation: none; }
+
+	.rw-quotes__viewport {
 		overflow-x: auto;
-		overflow-y: hidden;
-		scroll-snap-type: x mandatory;
-		scroll-behavior: smooth;
-		-webkit-overflow-scrolling: touch;
-		/* Keep a horizontal swipe from turning into a page-level back gesture. */
 		overscroll-behavior-x: contain;
-		scroll-padding-inline: 16px;
-		/* The scrollbar would sit across the brown panel; the peeking card
-		   already communicates that the row scrolls. */
 		scrollbar-width: none;
 	}
 
-	.elementor-element-e9f3825::-webkit-scrollbar {
-		display: none;
-	}
-
-	.elementor-element-e9f3825 > .e-con {
-		flex: 0 0 86%;
-		min-width: 0;
-		scroll-snap-align: center;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.elementor-element-e9f3825 {
-		scroll-behavior: auto;
-	}
+	.rw-quotes__viewport::-webkit-scrollbar { display: none; }
 }
 
 /* =====================================================================
