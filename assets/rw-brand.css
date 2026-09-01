@@ -519,3 +519,37 @@ body .bdp_blog_template h2.title {
 	margin-right: auto;
 	padding: 0 20px;
 }
+
+/* Page banner, matching the one the Yoga page inherits from Elementor
+   (brown #432D1A, white uppercase 38px centred). Written out here so pages
+   whose Elementor container was never a banner can carry the same one.
+   line-height is explicit because the theme sets `h2 { line-height: 1.5px }`,
+   which collapses any heading that inherits it. */
+.rw-pagebanner {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	padding: 66px 20px;
+	background-color: #432D1A;
+}
+
+/* Elementor emits `.elementor-kit-7 h2` at (0,1,1), which beats a lone class
+   and pulls both the colour and the size back to the page defaults. */
+.rw-pagebanner__title {
+	margin: 0;
+	color: #FFFFFF !important;
+	font-size: clamp(1.75rem, 5vw, 38px) !important;
+	line-height: 1.3 !important;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+@media (max-width: 778px) {
+	.rw-pagebanner { padding: 46px 16px; }
+}
+
+/* Cards hug their own content rather than stretching to the tallest in the
+   row: most treatments carry no description in Acuity, so stretching left a
+   short card with a large void under it. */
+.rw-classes__grid { align-items: start; }
