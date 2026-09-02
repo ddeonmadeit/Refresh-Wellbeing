@@ -1356,3 +1356,55 @@ html { background-color: #2A1A0D; }
 @media (max-width: 778px) {
 	.elementor-element-319c1ef iframe { height: 260px !important; }
 }
+
+
+/* =====================================================================
+ * Desktop
+ *
+ * The phone layout was built first and reads well; these bring the wide
+ * layout up to it. Everything here is scoped above the mobile breakpoint so
+ * the phone rendering is untouched.
+ * ===================================================================== */
+
+@media (min-width: 779px) {
+
+	/* The hero headline was capped at 4.4rem, which left it small in a 700px
+	   band - about a quarter of its height, against a third on a phone. */
+	.rw-hero-video .rw-hero-copy__line { font-size: clamp(2.6rem, 6.4vw, 5.4rem); }
+
+	/* Circles sat at 288px inside a 900px column on a 1440px screen, marooned
+	   in the middle of the brown. Same column as the rest of the page now. */
+	.rw-circles { max-width: 1140px; gap: 26px; }
+
+	.rw-circles-band { padding: 10px 20px 68px; }
+
+	/* Cards were sized in fractions, so a group with one card in it stretched
+	   that card across the full 1140px column and set its description on a
+	   1050px measure. Columns are capped instead: rows fill left to right and
+	   a lone card stays card-sized. */
+	.rw-classes__grid {
+		grid-template-columns: repeat(auto-fill, minmax(280px, 360px));
+		justify-content: start;
+	}
+
+	.rw-passes { grid-template-columns: repeat(auto-fill, minmax(240px, 300px)); }
+
+	/* A little more room per quote now there is width to spare. */
+	.rw-quotes__track > .rw-quote { width: 360px; margin-right: 20px; }
+
+	/* Long-form copy wants a readable measure, not the full column. */
+	.rw-acuity__intro,
+	.rw-acuity__fallback { max-width: 640px; }
+
+	/* The footer's two columns were both flush left in a full-width flex row,
+	   leaving a third of the footer empty on the right. Centred on the page
+	   column, sharing it evenly. */
+	.elementor-element-9092221 {
+		max-width: 1140px;
+		margin-left: auto;
+		margin-right: auto;
+		justify-content: center;
+	}
+
+	.elementor-element-9092221 > .e-con { flex: 1 1 0; max-width: 50%; }
+}
