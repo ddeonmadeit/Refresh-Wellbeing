@@ -37,11 +37,40 @@
 
 		track.classList.add('is-js');
 
-		var runWidth = 0;
-		function measure() {
-			// The track is two identical runs, so one run is exactly half of it.
-			runWidth = track.scrollWidth / 2;
+		/* One "set" is the original run of cards. The track is padded out with
+		   clones until it is at least a viewport wider than a set, because the
+		   loop travels exactly one set before repeating: with only two sets and
+		   a 27" monitor, the track was narrower than the screen and the row ran
+		   out mid-band with brown behind it. */
+		var set = [].slice.call(track.children).filter(function (el) {
+			return el.getAttribute('aria-hidden') !== 'true';
+		});
+		if (!set.length) { set = [].slice.call(track.children); }
+
+		function setWidth() {
+			return set.reduce(function (sum, el) {
+				var cs = getComputedStyle(el);
+				return sum + el.getBoundingClientRect().width + parseFloat(cs.marginRight || 0);
+			}, 0);
 		}
+
+		function fill() {
+			var one = setWidth();
+			if (one <= 0) { return 0; }
+			var needed = window.innerWidth + one;
+			var guard = 0;
+			while (track.scrollWidth < needed && guard++ < 20) {
+				set.forEach(function (el) {
+					var clone = el.cloneNode(true);
+					clone.setAttribute('aria-hidden', 'true');
+					track.appendChild(clone);
+				});
+			}
+			return one;
+		}
+
+		var runWidth = 0;
+		function measure() { runWidth = fill(); }
 		measure();
 		window.addEventListener('resize', measure);
 		if (window.ResizeObserver) { new ResizeObserver(measure).observe(track); }

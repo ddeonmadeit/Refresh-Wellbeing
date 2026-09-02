@@ -1368,6 +1368,22 @@ html { background-color: #2A1A0D; }
 
 @media (min-width: 779px) {
 
+	/* Centred in the card once there is width to centre within. */
+	.rw-quote__text,
+	.rw-quote__name { text-align: center; }
+
+	/* Class and treatment cards sit centred on the page rather than packed to
+	   the left, and their contents centre with them. Applied to both listings:
+	   the two pages were deliberately built to match. */
+	.rw-classes__grid,
+	.rw-passes { justify-content: center; }
+
+	.rw-classes__grid > .rw-class { text-align: center; }
+
+	.rw-classes__grid > .rw-class .rw-class__meta { justify-content: center; }
+
+	.rw-classes__grid > .rw-class .rw-class__book { align-self: center; }
+
 	/* The hero headline was capped at 4.4rem, which left it small in a 700px
 	   band - about a quarter of its height, against a third on a phone. */
 	.rw-hero-video .rw-hero-copy__line { font-size: clamp(2.6rem, 6.4vw, 5.4rem); }
@@ -1384,7 +1400,6 @@ html { background-color: #2A1A0D; }
 	   a lone card stays card-sized. */
 	.rw-classes__grid {
 		grid-template-columns: repeat(auto-fill, minmax(280px, 360px));
-		justify-content: start;
 	}
 
 	.rw-passes { grid-template-columns: repeat(auto-fill, minmax(240px, 300px)); }
@@ -1438,9 +1453,28 @@ html { background-color: #2A1A0D; }
 	.rw-quotes__track > .rw-quote { width: 400px; margin-right: 24px; }
 }
 
-/* The desktop band is wider than the footage's 16:9, so `cover` crops it top
-   and bottom - centred by default, which trims the sky. Biased upward to keep
-   the sky and the sun, letting the sea go instead. No effect on phones: there
-   the band matches the art-directed encode's aspect exactly, so nothing is
-   cropped to reposition. */
-.rw-hero-video video.rw-hero-video__media { object-position: 50% 22%; }
+/* hero.mp4/webm are encoded pre-cropped to the top 880 rows of the frame
+   (2.18:1) - everything below was sea that the wide desktop band discarded
+   anyway, so the bitrate now goes only on pixels that show. Anchored to the
+   top: her raised arm peaks at 4% of the original frame height and her head
+   sits at 13-17%, both of which a centred crop was cutting into on a wide
+   monitor. No effect on phones, where the band matches the mobile encode's
+   aspect exactly and nothing is cropped. */
+.rw-hero-video video.rw-hero-video__media { object-position: 50% 0%; }
+
+
+/* The footer band was painted #EEDBCE - a pinker, darker cream than the
+   --rw-cream the pages sit on, so it read as a different colour rather than a
+   continuation of the page. */
+.elementor-element-9092221,
+.elementor-11 .elementor-element.elementor-element-9092221 {
+	background-color: var(--rw-cream, #FBF4EE) !important;
+}
+
+
+/* Air between the brown page banner and the copy under it. */
+.rw-treatments-body { padding-top: 62px; }
+
+@media (max-width: 778px) {
+	.rw-treatments-body { padding-top: 40px; }
+}
