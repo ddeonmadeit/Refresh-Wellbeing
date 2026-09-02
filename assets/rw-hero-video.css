@@ -223,6 +223,14 @@ iframe.rw-hero-video__media {
 	font-family: 'Classic Roots', 'Pacifico', cursive !important;
 	font-size: 1.34em;
 	line-height: 1;
+	/* Classic Roots ships one weight, and its brush texture lives in hairline
+	   gaps inside the strokes. Inheriting the 600 set on the line makes the
+	   browser synthesise a bold, which thickens the strokes and closes those
+	   gaps - the letters go solid. Pinned to the face's real weight with
+	   synthesis off so the texture survives. */
+	font-weight: 400;
+	font-synthesis-weight: none;
+	font-synthesis: none;
 }
 
 @media (max-width: 1024px) {

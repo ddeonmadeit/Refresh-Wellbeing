@@ -31,6 +31,55 @@
 	unicode-range: U+0-2F, U+3A-10FFFF;
 }
 
+/*
+ * Museo Sans, for long-form reading copy and the homepage headline.
+ *
+ * The family names its weights on its own scale, which is not the CSS scale -
+ * Museo Sans 500 is the regular. Each face is declared at the CSS weight its
+ * own usWeightClass reports, so `font-weight: 400` picks up Museo Sans 500,
+ * 600 picks up Museo Sans 700 and 700 picks up Museo Sans 900. Unlike FT
+ * Overpass these faces carry real numerals, so digits are not farmed out.
+ */
+@font-face {
+	font-family: 'Museo Sans';
+	src: url('fonts/museo-sans-300.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Museo Sans';
+	src: url('fonts/museo-sans-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Museo Sans';
+	src: url('fonts/museo-sans-400-italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Museo Sans';
+	src: url('fonts/museo-sans-600.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Museo Sans';
+	src: url('fonts/museo-sans-700.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	--rw-font: 'FT Overpass', 'Quicksand', ui-sans-serif, system-ui,
 	           -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -38,7 +87,7 @@
 	   changed without touching headings, navigation or buttons. It currently
 	   resolves to the same stack; put a face in front of it and every
 	   paragraph on the site follows. */
-	--rw-body-font: var(--rw-font);
+	--rw-body-font: 'Museo Sans', var(--rw-font);
 	--rw-ink: #432D1A;
 	--rw-accent: #CA925C;
 }
@@ -372,6 +421,10 @@ body .bdp_blog_template h2.title {
 	line-height: 1.4;
 	letter-spacing: 0.04em;
 }
+
+/* Centred at every width, phones included. */
+.rw-quote__text,
+.rw-quote__name { text-align: center; }
 
 .rw-quote__name::before { content: '\2014\00a0'; }
 
@@ -1393,10 +1446,6 @@ html { background-color: #2A1A0D; }
  * ===================================================================== */
 
 @media (min-width: 779px) {
-
-	/* Centred in the card once there is width to centre within. */
-	.rw-quote__text,
-	.rw-quote__name { text-align: center; }
 
 	/* Class and treatment cards sit centred on the page rather than packed to
 	   the left, and their contents centre with them. Applied to both listings:
