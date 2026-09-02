@@ -58,11 +58,27 @@
 			v.defaultMuted = true;
 			v.playsInline = true;
 			v.controls = false;
+		});
+
+		/* Only the layer that plays first gets a src at load. Both layers used
+		   to be loaded together, which meant two full downloads of the same
+		   file racing each other before either could reach "playing" - fine
+		   at the old ~7MB sunset clip, a real stall on this ~14MB montage over
+		   anything but a fast connection. The idle layer is armed once the
+		   live one is actually running (see reveal(), below), which gives it
+		   the rest of that layer's runtime to buffer in the background. */
+		function arm(v) {
 			if (v.getAttribute('src') !== src) {
+				// Markup ships preload="none" so a browser never fetches on its
+				// own initiative (see the markup comment); switched to "auto"
+				// at the moment this layer is deliberately given work to do.
+				v.preload = 'auto';
 				v.setAttribute('src', src);
 				v.load();
 			}
-		});
+		}
+
+		arm(layers[0]);
 
 		/* The blend is driven from here, so the browser's own hard-cut loop is
 		   handed back. Kept in the markup purely for the no-JavaScript case. */
@@ -79,6 +95,9 @@
 			if (!started) {
 				started = true;
 				hero.classList.add('is-playing');
+				// The live layer is confirmed running - safe now to spend
+				// bandwidth on the other one, well ahead of when it is needed.
+				if (layers[1]) { arm(layers[1]); }
 			}
 		}
 

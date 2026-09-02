@@ -418,19 +418,28 @@ img.attachment-wc-blog-large.size-wc-blog-large.wp-post-image {
      footage with YouTube's play button and player chrome. Nothing here
      is clickable and no controls are rendered. -->
 <div class="rw-hero-video" role="presentation">
-	<!-- Two identical layers. The script plays them in turn and cross-dissolves
-	     one into the other a beat before the end, so the wrap back to the first
-	     scene blends like the dissolves inside the montage instead of cutting.
-	     Without JavaScript the first layer simply loops on its own. -->
-	<video class="rw-hero-video__media is-live"
-	       src="assets/hero/hero-mobile.mp4"
-	       autoplay muted loop playsinline webkit-playsinline
-	       preload="auto" disablepictureinpicture disableremoteplayback
+	<!-- Two identical layers. JavaScript picks the right encode, plays them in
+	     turn and cross-dissolves one into the other a beat before the end, so
+	     the wrap back to the first scene blends like the three dissolves baked
+	     into the montage instead of cutting.
+
+	     Neither layer carries a src in markup. A hardcoded fallback here used
+	     to let a no-JavaScript visitor see a looping video; on this file size
+	     it back-fired for everyone else instead - preload="auto" plus
+	     autoplay made the browser start fetching that fallback (always the
+	     390px mobile cut, even on a desktop visit) before the deferred script
+	     could run and correct the src, so real visits spent their first few
+	     seconds of bandwidth on the wrong file. A no-JavaScript visitor now
+	     sees the still frame behind these layers rather than a fallback loop
+	     - an acceptable trade against every ordinary visit stalling. -->
+	<video class="rw-hero-video__media"
+	       muted loop playsinline webkit-playsinline
+	       preload="none" disablepictureinpicture disableremoteplayback
 	       x-webkit-airplay="deny" controlslist="nodownload noplaybackrate"
 	       tabindex="-1" aria-hidden="true"></video>
 	<video class="rw-hero-video__media"
 	       muted playsinline webkit-playsinline
-	       preload="auto" disablepictureinpicture disableremoteplayback
+	       preload="none" disablepictureinpicture disableremoteplayback
 	       x-webkit-airplay="deny" controlslist="nodownload noplaybackrate"
 	       tabindex="-1" aria-hidden="true"></video>
 	<div class="rw-hero-copy">

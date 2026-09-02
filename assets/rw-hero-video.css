@@ -213,9 +213,10 @@ iframe.rw-hero-video__media {
 	   licensed woff2 is dropped into assets/fonts and given an @font-face. A
 	   copy installed on the reader's own machine is picked up either way. */
 	font-family: 'Museo Sans', 'MuseoSans', var(--rw-font, 'FT Overpass', Quicksand, ui-sans-serif, system-ui, sans-serif) !important;
-	font-size: clamp(2rem, 5.6vw, 4.4rem);
-	line-height: 1.06;
-	letter-spacing: 0;
+	font-size: clamp(1.6rem, 4.5vw, 3.5rem);
+	line-height: 0.98;
+	letter-spacing: -0.015em;
+	word-spacing: -0.06em;
 	font-weight: 400;   /* Museo Sans 500 */
 	/* No shadow or stroke - the type sits flat on the footage. */
 	text-shadow: none;
@@ -285,7 +286,7 @@ iframe.rw-hero-video__media {
 	}
 
 	.rw-hero-video .rw-hero-copy__line {
-		font-size: 9.1vw;
-		line-height: 1.1;
+		font-size: 7.2vw;
+		line-height: 1.0;
 	}
 }
