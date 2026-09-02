@@ -34,6 +34,11 @@
 :root {
 	--rw-font: 'FT Overpass', 'Quicksand', ui-sans-serif, system-ui,
 	           -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	/* Long-form copy is kept on its own variable so the reading face can be
+	   changed without touching headings, navigation or buttons. It currently
+	   resolves to the same stack; put a face in front of it and every
+	   paragraph on the site follows. */
+	--rw-body-font: var(--rw-font);
 	--rw-ink: #432D1A;
 	--rw-accent: #CA925C;
 }
@@ -53,6 +58,27 @@ p, li, a, span, div,
 .wl_hf-menu-item,
 .wl_hf-sub-menu-item {
 	font-family: var(--rw-font) !important;
+}
+
+/* ---------- reading face ----------
+ *
+ * Running text, as distinct from headings, navigation, buttons and labels -
+ * those stay on the display face above.
+ */
+
+p,
+blockquote,
+.elementor-widget-text-editor,
+.elementor-widget-text-editor p,
+.rw-classes__intro,
+.rw-classes__intro > p,
+.rw-class__desc,
+.rw-quote__text,
+.rw-enquiry__intro,
+.rw-acuity__intro,
+.rw-dash__notice,
+.rw-form__done-body {
+	font-family: var(--rw-body-font) !important;
 }
 
 /* ---------- weight ----------
@@ -1399,10 +1425,14 @@ html { background-color: #2A1A0D; }
 	   1050px measure. Columns are capped instead: rows fill left to right and
 	   a lone card stays card-sized. */
 	.rw-classes__grid {
-		grid-template-columns: repeat(auto-fill, minmax(280px, 360px));
+		/* auto-fit, not auto-fill: auto-fill keeps generating empty columns to
+		   fill the row, so a group holding one card left it sitting in the
+		   first of them with nothing for justify-content to centre. auto-fit
+		   collapses the empty tracks, so one card centres like a full row. */
+		grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
 	}
 
-	.rw-passes { grid-template-columns: repeat(auto-fill, minmax(240px, 300px)); }
+	.rw-passes { grid-template-columns: repeat(auto-fit, minmax(240px, 300px)); }
 
 	/* A little more room per quote now there is width to spare. */
 	.rw-quotes__track > .rw-quote { width: 360px; margin-right: 20px; }
@@ -1463,12 +1493,12 @@ html { background-color: #2A1A0D; }
 .rw-hero-video video.rw-hero-video__media { object-position: 50% 0%; }
 
 
-/* The footer band was painted #EEDBCE - a pinker, darker cream than the
-   --rw-cream the pages sit on, so it read as a different colour rather than a
-   continuation of the page. */
+/* The footer band was painted #EEDBCE - a pinker, darker cream than anything
+   else on the page. It now takes the same light cream the cards use, so the
+   footer and the cards read as one material. */
 .elementor-element-9092221,
 .elementor-11 .elementor-element.elementor-element-9092221 {
-	background-color: var(--rw-cream, #FBF4EE) !important;
+	background-color: #FFFFFF !important;
 }
 
 
