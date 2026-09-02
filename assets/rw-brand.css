@@ -1994,3 +1994,47 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 .elementor-element-9092221 .rw-footform__done {
 	color: var(--rw-panel);
 }
+
+
+/* =====================================================================
+ * Class and treatment cards - Museo Sans
+ *
+ * The product name carries Museo Sans 500 and everything else on the card -
+ * duration, price, description, when it runs - carries Museo Sans 300.
+ *
+ * Museo Sans numbers its weights on its own scale, not the CSS one, so those
+ * are `font-weight: 400` and `font-weight: 300` here: 400 resolves to the
+ * face named Museo Sans 500. Synthesis is off so a missing weight falls back
+ * to a real face rather than a smeared one.
+ * ===================================================================== */
+
+.rw-class__name,
+.rw-class__meta,
+.rw-class__len,
+.rw-class__price,
+.rw-class__when,
+.rw-class__desc,
+.rw-class__book,
+.rw-pass,
+.rw-pass__name,
+.rw-pass__price {
+	font-family: var(--rw-body-font) !important;
+	font-synthesis-weight: none;
+}
+
+/* The name is an h4, and the kit pins every heading to 400 at (0,1,1) - a
+   lone class cannot reach it. */
+.rw-class__name,
+.rw-pass__name,
+.rw-class__book {
+	font-weight: 400 !important;   /* Museo Sans 500 */
+}
+
+.rw-class__meta,
+.rw-class__len,
+.rw-class__price,
+.rw-class__when,
+.rw-class__desc,
+.rw-pass__price {
+	font-weight: 300 !important;   /* Museo Sans 300 */
+}

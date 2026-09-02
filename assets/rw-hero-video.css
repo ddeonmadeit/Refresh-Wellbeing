@@ -79,7 +79,7 @@
 video.rw-hero-video__media {
 	z-index: 1;
 	opacity: 0;
-	transition: opacity 900ms linear;
+	transition: opacity 600ms linear;
 }
 
 video.rw-hero-video__media.is-live {
@@ -120,10 +120,16 @@ video.rw-hero-video__media::-webkit-media-controls-play-button {
 	inset: 0;
 	z-index: 3;
 	pointer-events: none;
-	/* The headline is dark ink over the bright sky, so the previous left-hand
-	   scrim is gone - it would have muddied exactly the area the text sits on.
-	   What is left is the brand wash that seats the hero against the header. */
+	/* Two washes. The first sits under the headline: the copy is cream now,
+	   and the footage behind it is a bright waterfall, a pale sea and wet
+	   sand, which left the type at 2.9-3.9:1 unaided. A soft ellipse centred
+	   on the setting lifts it without flattening the corners of the frame.
+	   The second is the brand wash that seats the hero against the header. */
 	background:
+		radial-gradient(ellipse 68% 60% at 50% 50%,
+			rgba(36, 20, 8, 0.52) 0%,
+			rgba(36, 20, 8, 0.34) 52%,
+			rgba(36, 20, 8, 0) 100%),
 		linear-gradient(180deg,
 			rgba(42, 26, 14, 0.24) 0%,
 			rgba(42, 26, 14, 0.04) 34%,
@@ -201,7 +207,7 @@ iframe.rw-hero-video__media {
    class and forces colour and size back to inherit. */
 .rw-hero-video .rw-hero-copy__line {
 	margin: 0;
-	text-align: left;
+	text-align: center;
 	color: var(--rw-panel, #FBF4EE);
 	/* Museo Sans first; it falls through to the header menu's face until the
 	   licensed woff2 is dropped into assets/fonts and given an @font-face. A
@@ -210,7 +216,7 @@ iframe.rw-hero-video__media {
 	font-size: clamp(2rem, 5.6vw, 4.4rem);
 	line-height: 1.06;
 	letter-spacing: 0;
-	font-weight: 600;
+	font-weight: 400;   /* Museo Sans 500 */
 	/* No shadow or stroke - the type sits flat on the footage. */
 	text-shadow: none;
 }
@@ -235,6 +241,23 @@ iframe.rw-hero-video__media {
 
 @media (max-width: 1024px) {
 	.rw-hero-copy { padding: 0 26px; }
+}
+
+/* On a phone the headline runs almost the full width of the band, so the
+   ellipse is widened and given a floor: the beach scene puts "Survive" over
+   bright foam, which measured 2.6:1 with the desktop shaping. */
+@media (max-width: 778px) {
+	.rw-hero-video::after {
+		background:
+			radial-gradient(ellipse 96% 52% at 50% 50%,
+				rgba(36, 20, 8, 0.52) 0%,
+				rgba(36, 20, 8, 0.40) 55%,
+				rgba(36, 20, 8, 0.24) 100%),
+			linear-gradient(180deg,
+				rgba(42, 26, 14, 0.24) 0%,
+				rgba(42, 26, 14, 0.04) 34%,
+				rgba(67, 45, 26, 0.20) 100%);
+	}
 }
 
 /*

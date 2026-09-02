@@ -4,13 +4,15 @@
  * Three jobs:
  *
  *   1. Serve the right encode. WebM where the browser takes it, MP4 elsewhere;
- *      the 1280x720 cut on phones and the 1920x1080 cut on wide screens, so a
- *      1080p download is never spent on a 390px band.
+ *      the 1152x812 cut on phones and the 1920x880 cut on wide screens, so a
+ *      full-width download is never spent on a 390px band.
  *
- *   2. Blend the loop. A single looping <video> hard-cuts from the last frame
- *      back to the first. Instead two identical layers are stacked and played
- *      in turn: as the live one nears its end the idle one starts from zero
- *      underneath and fades up over it, so the seam is a dissolve.
+ *   2. Blend the loop. The footage is a montage of four scenes with the
+ *      dissolves between them baked into the file, but a single looping
+ *      <video> would still hard-cut from the last frame back to the first.
+ *      Instead two identical layers are stacked and played in turn: as the
+ *      live one nears its end the idle one starts from zero underneath and
+ *      fades up over it, so the wrap is a dissolve like the other three.
  *
  *   3. Never show a play button. The layers start fully transparent over a
  *      still frame and are only faded in once the browser reports the footage
@@ -23,7 +25,8 @@
 (function () {
 	'use strict';
 
-	var FADE_MS = 900;          // must match the CSS opacity transition
+	var FADE_MS = 600;          // must match the CSS opacity transition,
+	                            // and the dissolves baked into the montage
 	var LEAD_S = FADE_MS / 1000; // start the next layer this far from the end
 
 	function ready(fn) {
