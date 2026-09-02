@@ -1652,7 +1652,8 @@ html { background-color: #2A1A0D; }
 :root {
 	--rw-panel: #FBF4EE;      /* what used to be dark brown */
 	--rw-on-panel: #432D1A;   /* type on those panels */
-	--rw-accent-ink: #8A5A2B; /* the tan, darkened enough to read on cream */
+	--rw-accent-ink: #8A5A2B;
+	--rw-footer-brown: #2A1A0D; /* the tan, darkened enough to read on cream */
 }
 
 /* The header band is html showing through transparent containers, so this is
@@ -1839,4 +1840,108 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 .rw-class__price,
 .rw-pass__price {
 	color: var(--rw-accent-ink) !important;
+}
+
+
+/* =====================================================================
+ * Footer: a brown band over the cream strip
+ *
+ * The Contact / Stay updated band (9092221) takes the brown; the icon strip
+ * below it (c89e253) keeps the page cream, so the footer reads as one dark
+ * block sitting on the same cream the rest of the site uses. The brown is
+ * the testimonial cards' #2A1A0D rather than the button ink, so the two dark
+ * elements on the homepage are the same colour.
+ *
+ * Both containers are hidden on mobile - phones get the fixed bar (33e391c)
+ * instead - so this is a desktop and tablet change only.
+ * ===================================================================== */
+
+.elementor-element-9092221 {
+	background-color: var(--rw-footer-brown) !important;
+}
+
+/* Elementor colours each widget at (0,2,0) and the kit sets bare `h2` at
+   (0,1,1), so every text role in the band has to be named explicitly. */
+.elementor-element-9092221,
+.elementor-element-9092221 p,
+.elementor-element-9092221 a,
+.elementor-element-9092221 h2,
+.elementor-element-9092221 .elementor-heading-title,
+.elementor-element-9092221 .elementor-icon-list-text {
+	color: var(--rw-panel) !important;
+}
+
+/* The rule above catches the button too, since it is an anchor - put it back
+   as cream-on-brown reversed out. */
+.elementor-element-9092221 .elementor-button {
+	background-color: var(--rw-panel) !important;
+	color: var(--rw-footer-brown) !important;
+}
+
+.elementor-element-9092221 .elementor-button .elementor-button-text {
+	color: inherit !important;
+}
+
+.elementor-element-9092221 .elementor-button:hover,
+.elementor-element-9092221 .elementor-button:focus-visible {
+	background-color: var(--rw-accent) !important;
+	color: var(--rw-ink) !important;
+}
+
+.elementor-element-9092221 .elementor-divider-separator {
+	border-top-color: rgba(251, 244, 238, 0.28) !important;
+}
+
+/* The Stay updated form, reversed out onto the brown. */
+.elementor-element-9092221 .rw-footform__blurb {
+	color: rgba(251, 244, 238, 0.72);
+}
+
+.elementor-element-9092221 .rw-footform__input {
+	background-color: rgba(251, 244, 238, 0.09);
+	border-color: rgba(251, 244, 238, 0.34);
+	color: var(--rw-panel);
+}
+
+.elementor-element-9092221 .rw-footform__input::placeholder {
+	color: rgba(251, 244, 238, 0.56);
+}
+
+.elementor-element-9092221 .rw-footform__input:focus {
+	border-color: var(--rw-accent);
+	box-shadow: 0 0 0 3px rgba(202, 146, 92, 0.30);
+}
+
+/* Chrome and Safari paint their own near-white fill on an autofilled input,
+   which would punch a light box into the band. */
+.elementor-element-9092221 .rw-footform__input:-webkit-autofill,
+.elementor-element-9092221 .rw-footform__input:-webkit-autofill:focus {
+	-webkit-text-fill-color: var(--rw-panel);
+	-webkit-box-shadow: 0 0 0 1000px #3A2413 inset;
+	caret-color: var(--rw-panel);
+}
+
+.elementor-element-9092221 .rw-footform__input[aria-invalid="true"] {
+	border-color: #E7A08C;
+}
+
+/* #A2442B is a mid brown-red - it disappears on this band. */
+.elementor-element-9092221 .rw-footform__error {
+	color: #E7A08C;
+}
+
+.elementor-element-9092221 .rw-footform__submit,
+.elementor-element-9092221 .rw-footform__mailto {
+	background-color: var(--rw-panel);
+	color: var(--rw-footer-brown) !important;
+}
+
+.elementor-element-9092221 .rw-footform__submit:hover,
+.elementor-element-9092221 .rw-footform__submit:focus-visible {
+	background-color: var(--rw-accent);
+	color: var(--rw-ink) !important;
+}
+
+.elementor-element-9092221 .rw-footform__done {
+	color: var(--rw-panel);
 }
