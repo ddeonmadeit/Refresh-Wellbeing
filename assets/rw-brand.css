@@ -351,9 +351,10 @@ body .bdp_blog_template h2.title {
 
 .rw-quotes__viewport {
 	overflow: hidden;
-	/* Fades the cards into the brown at both edges rather than cutting them. */
-	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-	mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+	/* No edge mask: it was tuned to fade the cards into a matching dark brown
+	   page background. Now that the page is cream and the cards stay brown,
+	   the same fade showed as a pale haze washing over the card edges rather
+	   than a clean dissolve, and it clipped the edge cards' text mid-line. */
 }
 
 .rw-quotes__track {
