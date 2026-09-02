@@ -1408,3 +1408,39 @@ html { background-color: #2A1A0D; }
 
 	.elementor-element-9092221 > .e-con { flex: 1 1 0; max-width: 50%; }
 }
+
+
+/* =====================================================================
+ * Large displays (a 27" Mac sits at 2560 logical px)
+ *
+ * The hero band was a flat 700px at every width above the tablet
+ * breakpoint. At 2560 that is a 3.66:1 slot for 16:9 footage - only about
+ * half the frame's height survives the crop, and the headline, capped at
+ * 5.4rem, shrinks to a detail inside it. The band grows with the viewport
+ * here and the type grows with it.
+ *
+ * Body copy deliberately stays on the 1140px column: a wider measure is
+ * harder to read, not grander. Only the full-bleed pieces widen.
+ * ===================================================================== */
+
+@media (min-width: 1600px) {
+	.rw-hero-video { height: clamp(700px, 44vw, 920px); }
+
+	.rw-hero-video .rw-hero-copy__line { font-size: clamp(3.4rem, 5.2vw, 7rem); }
+
+	/* Keeps the headline from drifting into the middle of a very wide frame. */
+	.rw-hero-copy { max-width: 1400px; }
+
+	.rw-circles { max-width: 1400px; gap: 34px; }
+
+	.rw-circles-band { padding: 16px 20px 80px; }
+
+	.rw-quotes__track > .rw-quote { width: 400px; margin-right: 24px; }
+}
+
+/* The desktop band is wider than the footage's 16:9, so `cover` crops it top
+   and bottom - centred by default, which trims the sky. Biased upward to keep
+   the sky and the sun, letting the sea go instead. No effect on phones: there
+   the band matches the art-directed encode's aspect exactly, so nothing is
+   cropped to reposition. */
+.rw-hero-video video.rw-hero-video__media { object-position: 50% 22%; }
