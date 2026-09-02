@@ -1631,3 +1631,212 @@ html { background-color: #2A1A0D; }
 @media (max-width: 520px) {
 	.rw-footform__row { grid-template-columns: 1fr; gap: 0; }
 }
+
+
+/* =====================================================================
+ * Light scheme
+ *
+ * The site was cream pages framed by dark brown furniture - header, banners,
+ * the homepage bands and the footer. Those panels are cream now, so the brown
+ * is carried by type, buttons and the testimonial cards rather than by large
+ * fills.
+ *
+ * Two things stay dark on purpose: buttons, which need to read as pressable
+ * against a pale page, and the testimonial cards, which are the one place the
+ * brown is still doing work.
+ *
+ * Ordering note: this block sits last in the file so it lands after the
+ * per-section rules it overrides.
+ * ===================================================================== */
+
+:root {
+	--rw-panel: #FBF4EE;      /* what used to be dark brown */
+	--rw-on-panel: #432D1A;   /* type on those panels */
+	--rw-accent-ink: #8A5A2B; /* the tan, darkened enough to read on cream */
+}
+
+/* The header band is html showing through transparent containers, so this is
+   what turns the top of every page cream - and the iOS overscroll with it. */
+html { background-color: var(--rw-panel) !important; }
+
+/* ---------- header ---------- */
+
+/* The header's colour is not a background at all - Elementor paints it with an
+   absolutely positioned ::before filling the container. Two of them, one per
+   breakpoint, which is why changing html alone left the phone header dark. */
+.elementor-element-bfcad42::before,
+.elementor-element-3ca5577::before,
+.elementor-106 .elementor-element.elementor-element-bfcad42::before,
+.elementor-106 .elementor-element.elementor-element-3ca5577::before {
+	background-color: var(--rw-panel) !important;
+}
+
+a.wl_hf-menu-item,
+a.wl_hf-sub-menu-item {
+	background-color: transparent !important;
+	color: var(--rw-on-panel) !important;
+}
+
+a.wl_hf-menu-item:hover,
+a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
+
+/* ---------- homepage bands ---------- */
+
+.elementor-element-3f890d8,
+.elementor-11 .elementor-element.elementor-element-3f890d8 {
+	background-color: var(--rw-panel) !important;
+}
+
+.elementor-11 .elementor-element.elementor-element-511bd81 .elementor-heading-title,
+.elementor-element-3f890d8 .elementor-heading-title {
+	color: var(--rw-accent-ink) !important;
+}
+
+.rw-circles-band { background-color: var(--rw-panel); }
+
+/* Labels sit on the photographs, not on the band, so they stay light. */
+
+.rw-quotes { background-color: var(--rw-panel); }
+
+.rw-quotes__title { color: var(--rw-accent-ink) !important; }
+
+/* The cards keep the brown - the one place it is still carrying weight. */
+.rw-quotes__track > .rw-quote {
+	background-color: #2A1A0D;
+	box-shadow: inset 0 0 0 1px rgba(202, 146, 92, 0.22);
+}
+
+/* ---------- page banners ---------- */
+
+.rw-pagebanner { background-color: var(--rw-panel); }
+
+.rw-pagebanner__title { color: var(--rw-on-panel) !important; }
+
+/* Yoga and Retreats keep Elementor's own banner container rather than the one
+   written into this sheet, so it needs naming separately. */
+.elementor-element-457a177,
+.elementor .elementor-element.elementor-element-457a177 {
+	background-color: var(--rw-panel) !important;
+}
+
+.elementor-element-457a177 .elementor-heading-title,
+.elementor-element-457a177 h2 {
+	color: var(--rw-on-panel) !important;
+}
+
+/* ---------- contact page ---------- */
+
+.elementor-element-a829182,
+.elementor-element-b759712 {
+	background-color: var(--rw-panel) !important;
+}
+
+.elementor-element-a829182 h1,
+.elementor-element-a829182 h2,
+.elementor-element-a829182 h3,
+.elementor-element-a829182 p,
+.elementor-element-a829182 a,
+.elementor-element-a829182 span {
+	color: var(--rw-on-panel) !important;
+}
+
+.wpforms-container .wpforms-field-label,
+.wpforms-container .wpforms-field-sublabel {
+	color: rgba(67, 45, 26, 0.78) !important;
+}
+
+.rw-contact__done {
+	background-color: #FFFFFF;
+	box-shadow: inset 0 0 0 1px rgba(202, 146, 92, 0.3);
+}
+
+.rw-contact__done .rw-form__done-title,
+.rw-contact__done .rw-form__done-body { color: var(--rw-on-panel); }
+
+.rw-contact__done .rw-form__privacy { color: rgba(67, 45, 26, 0.62); }
+
+/* ---------- footer strip ---------- */
+
+.elementor-element-c89e253,
+.elementor-11 .elementor-element.elementor-element-c89e253 {
+	background-color: var(--rw-panel) !important;
+	border-top: 1px solid rgba(67, 45, 26, 0.12);
+}
+
+.elementor-element-c89e253 a,
+.elementor-element-c89e253 span,
+.elementor-element-c89e253 p,
+.elementor-element-c89e253 .elementor-heading-title,
+.elementor-element-c89e253 i,
+.elementor-element-c89e253 svg {
+	color: var(--rw-on-panel) !important;
+	fill: var(--rw-on-panel) !important;
+}
+
+/* ---------- mobile bar and drawer ---------- */
+
+.elementor-element-33e391c,
+.elementor-11 .elementor-element.elementor-element-33e391c {
+	background-color: rgba(251, 244, 238, 0.96) !important;
+	border-top: 1px solid rgba(67, 45, 26, 0.14);
+	backdrop-filter: saturate(1.1) blur(8px);
+}
+
+.elementor-element-33e391c a,
+.elementor-element-33e391c i,
+.elementor-element-33e391c svg {
+	color: var(--rw-on-panel) !important;
+	fill: var(--rw-on-panel) !important;
+}
+
+.rw-nav-panel { background-color: var(--rw-panel); }
+
+.rw-nav-backdrop { background-color: rgba(67, 45, 26, 0.32); }
+
+.rw-nav-panel a,
+.rw-nav-panel .rw-nav-panel__brand,
+.rw-nav-close {
+	color: var(--rw-on-panel) !important;
+}
+
+.rw-nav-close { background-color: rgba(67, 45, 26, 0.08) !important; }
+
+/* The burger is an SVG stroked with currentColor, so it follows the button's
+   colour rather than any background of its own. */
+.wl_hf-nav-menu__toggle,
+.wl_hf-nav-menu__toggle .wl_hf-nav-menu-icon,
+.rw-burger-icon {
+	color: var(--rw-on-panel) !important;
+}
+
+.rw-burger-icon { stroke: currentColor; }
+
+/* Elementor gives the burger a solid #432D1A chip. On cream that turns into a
+   dark block with the (now dark) strokes lost inside it - dropped to the same
+   faint ink tint the drawer's close button uses, so the chip still reads as a
+   tap target without swallowing the icon. */
+.wl_hf-nav-menu__toggle .wl_hf-nav-menu-icon {
+	background-color: rgba(67, 45, 26, 0.08) !important;
+	box-shadow: inset 0 0 0 1px rgba(67, 45, 26, 0.12);
+}
+
+/* The legacy /private-classes/ page is no longer in the menu but is still
+   reachable from the blog and category archives, and it carries its own brown
+   title band with white text. Brought across with the rest of the site. */
+.elementor-element-57a6f5b {
+	background-color: var(--rw-panel) !important;
+}
+
+.elementor-element-57a6f5b .elementor-heading-title {
+	color: var(--rw-on-panel) !important;
+}
+
+/* The tan reads at 2.7:1 on a white card - fine as a large flourish, too weak
+   for the small duration and price chips. Darkened for those only; the tan is
+   untouched everywhere it sits on brown. */
+.rw-class__meta,
+.rw-class__len,
+.rw-class__price,
+.rw-pass__price {
+	color: var(--rw-accent-ink) !important;
+}
