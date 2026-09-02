@@ -203,15 +203,16 @@ iframe.rw-hero-video__media {
 	margin: 0;
 	text-align: left;
 	color: var(--rw-panel, #FBF4EE);
-	/* Same face and weight as the header menu. */
-	font-family: var(--rw-font, 'FT Overpass', Quicksand, ui-sans-serif, system-ui, sans-serif) !important;
+	/* Museo Sans first; it falls through to the header menu's face until the
+	   licensed woff2 is dropped into assets/fonts and given an @font-face. A
+	   copy installed on the reader's own machine is picked up either way. */
+	font-family: 'Museo Sans', 'MuseoSans', var(--rw-font, 'FT Overpass', Quicksand, ui-sans-serif, system-ui, sans-serif) !important;
 	font-size: clamp(2rem, 5.6vw, 4.4rem);
 	line-height: 1.06;
 	letter-spacing: 0;
 	font-weight: 600;
-	/* Cream over a sunset: the sun sits directly behind the setting, so the
-	   type needs a dark halo rather than the light one the brown ink used. */
-	text-shadow: 0 2px 18px rgba(36, 20, 8, 0.55), 0 0 3px rgba(36, 20, 8, 0.35);
+	/* No shadow or stroke - the type sits flat on the footage. */
+	text-shadow: none;
 }
 
 /* "Thrive" carries the script, set larger so it sits optically level with the
