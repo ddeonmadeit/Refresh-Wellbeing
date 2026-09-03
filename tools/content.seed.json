@@ -1,0 +1,282 @@
+{
+ "testimonials": [
+  {
+   "text": "Evonne is so such a supportive and caring Yoga teacher. Prior to starting regular classes with Evonne I found it hard to find a class and teacher I liked. I was constantly getting headaches and aches and seeing the chiropractor to help with a stiff neck and shoulder, since attending regular classes and being guided by Evonne I rarely get an neck aches and headaches. I look forward to yoga, I especially love classes down by the water or seeing the trees and sky above me. Highly recommend Refresh Wellbeing.",
+   "name": "Kristy Bentley"
+  },
+  {
+   "text": "Evonne is a wonderful massage therapist, yoga teacher, and human being. The massage I had left me feeling so relaxed and I felt completely de-stressed for days afterwards. The massage space itself has been beautifully decorated and with a beautiful garden surrounding it. It is really a sacred space where healing, relaxation rand trust happen. I have also joined her outdoor yoga classes, which are absolutely magical. Being able to experience yoga in the fresh air, surrounded by nature and supported by Evonne's holistic, caring, and friendly approach brings so much joy and peace into my life. I highly recommend her services to anyone.",
+   "name": "Veronica Fuchsova"
+  },
+  {
+   "text": "I walked through the Refresh Wellbeing doorway and my life changed! 4 weeks of a weekly massage and private guided beginners yoga sessions with Evonne and my life has turned around! My breathing issues have improved 50%, while my joint strength and balance now Does Exist. Evonne your healing skills are amazing and your kind and caring ways are so Refreshing\u2026 come and join me and be healed!",
+   "name": "Christine Leigo"
+  }
+ ],
+ "yoga": {
+  "groups": [
+   {
+    "group": "Group Classes",
+    "cards": [
+     {
+      "name": "Outdoor Yoga Flow by the Water",
+      "when": "Saturdays, 8am \u00b7 Oatley Park",
+      "length": "60 min",
+      "price": "$30",
+      "desc": "This Yoga flow class is designed to reconnect you with your breath, body and the nature that surrounds you. This class is perfectly structured to build strength and flexibility as well as bring stillness to the mind. You will leave feeling restored and energised.",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=97583447",
+      "sr": "Outdoor Yoga Flow by the Water"
+     }
+    ]
+   },
+   {
+    "group": "Private Sessions",
+    "cards": [
+     {
+      "name": "Private Yoga Class",
+      "when": "",
+      "length": "60 min",
+      "price": "$80",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26444957",
+      "sr": "Private Yoga Class"
+     },
+     {
+      "name": "Private Guided Walk & Yoga",
+      "when": "",
+      "length": "90 min",
+      "price": "$110",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26444997",
+      "sr": "Private Guided Walk and Yoga"
+     },
+     {
+      "name": "Dual Private Yoga Session",
+      "when": "",
+      "length": "60 min",
+      "price": "$110",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=31338115",
+      "sr": "Dual Private Yoga Session"
+     },
+     {
+      "name": "Dual Private Yoga with Guided Walk",
+      "when": "",
+      "length": "90 min",
+      "price": "$140",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=31338195",
+      "sr": "Dual Private Yoga with Guided Walk"
+     },
+     {
+      "name": "Hot Chair Yoga",
+      "when": "",
+      "length": "60 min",
+      "price": "$80",
+      "desc": "This private yoga class is held in an Infrared Sauna and is perfect for stiff and aching bodies. It incorporates stretching and breathing to encourage loosening up of tired and tight muscles while also detoxifying as well as increasing circulation and reducing inflammation in the body. Class will end with a meditation which will be held on a mat outside sauna to seal off your practice. Towels and mats will be provided.",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=59621457",
+      "sr": "Hot Chair Yoga"
+     }
+    ]
+   }
+  ],
+  "passes": [
+   {
+    "name": "Single Class",
+    "price": "$30"
+   },
+   {
+    "name": "5 Class Pack",
+    "price": "$115"
+   },
+   {
+    "name": "10 Class Pass",
+    "price": "$210"
+   },
+   {
+    "name": "20 Class Pass",
+    "price": "$395"
+   },
+   {
+    "name": "Introductory Offer",
+    "price": "$66"
+   },
+   {
+    "name": "Beginners Yoga Workshop",
+    "price": "$210"
+   },
+   {
+    "name": "Private Yoga Promotion",
+    "price": "$200"
+   }
+  ]
+ },
+ "treatments": {
+  "groups": [
+   {
+    "group": "Packages",
+    "cards": [
+     {
+      "name": "Facial & Massage Package",
+      "when": "",
+      "length": "90 min",
+      "price": "$210",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=74483791",
+      "sr": "Facial and Massage Package"
+     }
+    ]
+   },
+   {
+    "group": "Massages",
+    "cards": [
+     {
+      "name": "30 Minute Massage",
+      "when": "",
+      "length": "30 min",
+      "price": "$60",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=75627679",
+      "sr": "30 Minute Massage"
+     },
+     {
+      "name": "45 Minute Massage",
+      "when": "",
+      "length": "45 min",
+      "price": "$70",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=75627712",
+      "sr": "45 Minute Massage"
+     },
+     {
+      "name": "60 Minute Massage",
+      "when": "",
+      "length": "60 min",
+      "price": "$120",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=74224974",
+      "sr": "60 Minute Massage"
+     },
+     {
+      "name": "Pregnancy Massage",
+      "when": "",
+      "length": "60 min",
+      "price": "$130",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=75627964",
+      "sr": "Pregnancy Massage"
+     },
+     {
+      "name": "Ki Shiatsu",
+      "when": "",
+      "length": "75 min",
+      "price": "$100",
+      "desc": "Ki Shiatsu therapy works on meridians (energy channels) and pressure points (tsubos) in our body dissolving blockages (Yin/Yang out of balances) caused by strain (internal and external factors) effecting our nervous system caused from life. This powerful therapy brings one\u2019s full expression of physical, mental and emotional health.",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=58183468",
+      "sr": "Ki Shiatsu"
+     }
+    ]
+   },
+   {
+    "group": "Facials",
+    "cards": [
+     {
+      "name": "Skin Peel",
+      "when": "",
+      "length": "30 min",
+      "price": "$50",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=30754782",
+      "sr": "Skin Peel"
+     },
+     {
+      "name": "Detox Facial",
+      "when": "",
+      "length": "60 min",
+      "price": "$130",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26416193",
+      "sr": "Detox Facial"
+     },
+     {
+      "name": "Glow Facial",
+      "when": "",
+      "length": "60 min",
+      "price": "$140",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26416144",
+      "sr": "Glow Facial"
+     },
+     {
+      "name": "Acne Treatment Facial",
+      "when": "",
+      "length": "60 min",
+      "price": "$140",
+      "desc": "This facial targets acne prone skins. It includes a deep cleanse including exfoliation and extractions as well as lymphatic drainage. Then finished off with an LED treatment to help calm, heal and restore clear vibrant skin.",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=53510029",
+      "sr": "Acne Treatment Facial"
+     },
+     {
+      "name": "Anti Ageing Facial",
+      "when": "",
+      "length": "75 min",
+      "price": "$165",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26416133",
+      "sr": "Anti Ageing Facial"
+     },
+     {
+      "name": "Deluxe Facial",
+      "when": "",
+      "length": "75 min",
+      "price": "$165",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=26416116",
+      "sr": "Deluxe Facial"
+     }
+    ]
+   },
+   {
+    "group": "Brow & Lash",
+    "cards": [
+     {
+      "name": "Brow Tint",
+      "when": "",
+      "length": "15 min",
+      "price": "$20",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=30754809",
+      "sr": "Brow Tint"
+     },
+     {
+      "name": "Lash Tint",
+      "when": "",
+      "length": "30 min",
+      "price": "$25",
+      "desc": "",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=30754818",
+      "sr": "Lash Tint"
+     }
+    ]
+   }
+  ]
+ },
+ "retreats": {
+  "groups": [
+   {
+    "group": "Workshops",
+    "cards": [
+     {
+      "name": "Soundbath Meditation",
+      "when": "",
+      "length": "60 min",
+      "price": "$39",
+      "desc": "Join us for an immersive workshop that is guaranteed to put you into a deep relaxation mode, to melt away any heaviness from the stresses of your day to day responsibilities. This workshop will combine calming sounds with the inclusion of instruments such as sound bowls, bells and chimes. You will also experience a head massage infused with essential oils to tantalise the senses and keep you in a relaxed state of mind.",
+      "book_url": "https://app.acuityscheduling.com/schedule.php?owner=24043718&appointmentType=88659715",
+      "sr": "Soundbath Meditation"
+     }
+    ]
+   }
+  ]
+ }
+}
