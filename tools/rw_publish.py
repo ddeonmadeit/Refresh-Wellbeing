@@ -25,8 +25,19 @@ ROOT = Path(__file__).resolve().parent.parent
 TARGETS = {
     "testimonials": ["index.html"],
     "yoga":         ["bookings/index.html", "bookings.html"],
-    "treatments":   ["spa-treatments/index.html"],
+    "treatments":   ["spa-treatments/index.html",
+                     "spa-treatments/massage/index.html",
+                     "spa-treatments/facial-treatments/index.html"],
     "retreats":     ["retreats/index.html"],
+}
+
+# Treatments are split across a hub and two subpages, so a group goes to the
+# page that owns it rather than all of them landing on one listing. A group
+# named here is written only to its page; anything unlisted stays on the hub.
+GROUP_PAGES = {
+    "Massages":    "spa-treatments/massage/index.html",
+    "Facials":     "spa-treatments/facial-treatments/index.html",
+    "Brow & Lash": "spa-treatments/facial-treatments/index.html",
 }
 
 T = "\t"
@@ -145,6 +156,12 @@ def replace_between(src, open_pat, close_tag, build):
     return src[:start] + new + src[end:], True
 
 
+class RegionMissing(Exception):
+    """A managed region the file is supposed to have could not be located.
+    Raised rather than skipped: a silent miss looks exactly like 'nothing to
+    change' and would let a publish quietly do nothing."""
+
+
 def apply_quotes(src, data):
     return replace_between(
         src, r'<ul class="rw-quotes__track">', "</ul>",
@@ -152,9 +169,15 @@ def apply_quotes(src, data):
     )
 
 
+# The run of group headings and their grids, up to whatever follows the last
+# one. The trailing markup differs per page - a <p> or <div> call to action, the
+# passes list, or simply the end of the wrapper - so all of them are listed. A
+# missing terminator used to make this silently match nothing, which read as
+# "unchanged" and quietly skipped the page; find_region_or_fail now shouts.
 GRID_REGION = re.compile(
-    r'(<h3 class="rw-classes__group">.*?</ul>)(?=\s*(?:<div class="rw-classes__cta"|'
-    r'<h3 class="rw-passes__title"|</div>))',
+    r'(<h3 class="rw-classes__group">.*</ul>)(?=\s*(?:<(?:p|div) class="rw-classes__cta"|'
+    r'<p class="rw-classes__note"|<h3 class="rw-passes__title"|<ul class="rw-passes"|'
+    r'</section>|</div>))',
     re.S,
 )
 
@@ -164,7 +187,9 @@ def apply_groups(src, groups):
     added, removed or reordered - not just their contents."""
     m = GRID_REGION.search(src)
     if not m:
-        return src, False
+        if not groups:
+            return src, False   # nothing to place and nowhere to place it
+        raise RegionMissing("no rw-classes__group region found")
     depth = indent_of(src, m.start())
     # Take the region from the start of its line, so the leading tabs already
     # in the file are replaced rather than added to.
@@ -189,13 +214,24 @@ def apply_to_file(path, key, data, check):
     src = original = p.read_text(encoding="utf-8")
     touched = []
 
+    try:
+        return _apply(p, path, key, data, check, src, original, touched)
+    except RegionMissing as e:
+        return f"{path}: PROBLEM - {e}", False
+
+
+def _apply(p, path, key, data, check, src, original, touched):
     if key == "testimonials":
         src, ch = apply_quotes(src, data)
         if ch:
             touched.append("testimonials")
     else:
         section = data.get(key) or {}
-        src, ch = apply_groups(src, section.get("groups", []))
+        groups = section.get("groups", [])
+        if key == "treatments":
+            groups = [g for g in groups
+                      if GROUP_PAGES.get(g.get("group"), TARGETS["treatments"][0]) == path]
+        src, ch = apply_groups(src, groups)
         if ch:
             touched.append("groups")
         if "passes" in section:

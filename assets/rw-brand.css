@@ -566,12 +566,20 @@ body .bdp_blog_template h2.title {
 
 .rw-classes__note { margin-bottom: 18px; }
 
+/* Set as a section label rather than a heading. The kit styles bare `h3` at a
+   specificity a lone class cannot reach, which was quietly rendering these at
+   15px - the size of body copy, so the groups read as unlabelled. Rather than
+   escalate a size fight, they are now deliberately small, uppercase and tan,
+   matching the TESTIMONIALS label on the home page. */
 .rw-classes__group {
-	margin: 42px 0 20px;
+	margin: 34px 0 16px !important;
 	text-align: center;
-	font-size: clamp(1.5rem, 3.4vw, 2rem);
-	line-height: 1.3;
-	color: var(--rw-ink, #432D1A);
+	font-size: 0.78rem !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	line-height: 1.3 !important;
+	color: var(--rw-accent-ink, #8A5A2B) !important;
 }
 
 .rw-classes__grid {
@@ -747,10 +755,21 @@ body .bdp_blog_template h2.title {
 	.rw-pagebanner { padding: 46px 16px; }
 }
 
-/* Cards hug their own content rather than stretching to the tallest in the
-   row: most treatments carry no description in Acuity, so stretching left a
-   short card with a large void under it. */
-.rw-classes__grid { align-items: start; }
+/* Cards stretch to the tallest in their row so the Book buttons line up along
+   a common baseline - with descriptions clamped below, the difference between
+   the longest and shortest card is a line or two rather than a void. */
+.rw-classes__grid { align-items: stretch; }
+
+.rw-classes__grid > .rw-class { display: flex; flex-direction: column; }
+
+/* A treatment's description is a taster; the full copy lives on the booking
+   page. Clamping keeps one wordy entry from setting the height of its row. */
+.rw-class__desc {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 
 /* =====================================================================
  * Homepage category circles
@@ -1479,7 +1498,10 @@ html { background-color: #2A1A0D; }
 		   fill the row, so a group holding one card left it sitting in the
 		   first of them with nothing for justify-content to centre. auto-fit
 		   collapses the empty tracks, so one card centres like a full row. */
-		grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+		/* 348px, not 360: three of those plus two 18px gaps is 1080px and fits
+		   the 1100px column, where 360 forced a second row after two and left
+		   360px of the page empty either side. */
+		grid-template-columns: repeat(auto-fit, minmax(260px, 348px));
 	}
 
 	.rw-passes { grid-template-columns: repeat(auto-fit, minmax(240px, 300px)); }
@@ -2038,4 +2060,73 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 .rw-class__desc,
 .rw-pass__price {
 	font-weight: 300 !important;   /* Museo Sans 300 */
+}
+
+
+/* =====================================================================
+ * Spa treatment categories
+ *
+ * The hub page sends visitors to massage, facials or the sauna rather than
+ * running all fourteen treatments down one page. Same card language as the
+ * treatments themselves so the two read as one system.
+ * ===================================================================== */
+
+.rw-cats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+	max-width: 1140px;
+	margin: 0 auto 8px;
+	padding: 0;
+	list-style: none;
+}
+
+.rw-cat { margin: 0; padding: 0; list-style: none; }
+.rw-cat::marker { content: none; }
+
+.rw-cat__link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	height: 100%;
+	padding: 26px 20px;
+	background-color: #FFFFFF;
+	border-radius: 14px;
+	text-align: center;
+	text-decoration: none;
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.rw-cat__link:hover,
+.rw-cat__link:focus-visible {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 22px rgba(67, 45, 26, 0.12);
+}
+
+.rw-cat__name {
+	font-size: 1.06rem;
+	color: var(--rw-ink, #432D1A);
+}
+
+.rw-cat__meta {
+	font-size: 0.82rem;
+	font-weight: 300;
+	color: var(--rw-accent-ink, #8A5A2B);
+}
+
+/* Back out of a subpage to the hub. */
+.rw-back {
+	display: inline-block;
+	margin-top: 6px;
+	color: var(--rw-accent-ink, #8A5A2B) !important;
+	font-size: 0.88rem;
+	text-decoration: none;
+}
+
+.rw-back:hover { text-decoration: underline; }
+
+@media (max-width: 778px) {
+	.rw-cats { grid-template-columns: 1fr; gap: 12px; }
+	.rw-cat__link { padding: 20px 18px; }
 }
