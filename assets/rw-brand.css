@@ -2224,3 +2224,29 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 @media (max-width: 1024px) {
 	.rw-subnav { display: none; }
 }
+
+/* =====================================================================
+ * Acuity booking embed
+ *
+ * Acuity's own embed.js resizes the frame to its content, so the height
+ * attribute is only the pre-load reservation - without it the page jumps
+ * once the scheduler renders.
+ * ===================================================================== */
+
+.rw-booking {
+	max-width: 1140px;
+	margin: 0 auto 12px;
+}
+
+.rw-booking__frame {
+	display: block;
+	width: 100%;
+	min-height: 760px;
+	border: 0;
+	border-radius: 14px;
+	background-color: #FFFFFF;
+}
+
+@media (max-width: 778px) {
+	.rw-booking__frame { min-height: 900px; border-radius: 10px; }
+}
