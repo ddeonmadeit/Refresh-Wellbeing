@@ -363,7 +363,11 @@ body .bdp_blog_template h2.title {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	animation: rw-marquee 64s linear infinite;
+	/* No-JavaScript fallback only - rw-quotes.js sets .is-js and takes the
+	   transform over. Like the script's old pacing this is a fixed duration
+	   for the whole track, so it runs faster the more testimonials there
+	   are; 726s keeps 34 of them near the script's per-card pace. */
+	animation: rw-marquee 726s linear infinite;
 }
 
 @keyframes rw-marquee {

@@ -13,7 +13,12 @@
 (function () {
 	'use strict';
 
-	var SECONDS_PER_RUN = 64;   // base pace, matching the CSS fallback
+	/* Pace is per card, not per run. It used to be one whole run every 64
+	   seconds, which tied the speed to how many testimonials there were -
+	   going from 3 to 34 made the row travel 11x faster. A card every 21.3s
+	   is the same pace the original three ran at (64s / 3), and it now stays
+	   put however many are added. */
+	var SECONDS_PER_CARD = 64 / 3;
 	var WHEEL_GAIN = 9;         // how hard a horizontal wheel/trackpad shove pushes
 	var SCROLL_GAIN = 3.2;      // a vertical page scroll nudges it along more gently
 	var SWIPE_GAIN = 22;        // a finger drag
@@ -69,8 +74,12 @@
 			return one;
 		}
 
-		var runWidth = 0;
-		function measure() { runWidth = fill(); }
+		var runWidth = 0;    // one full set - the distance before the loop repeats
+		var cardWidth = 0;   // one card plus its gap - what sets the pace
+		function measure() {
+			runWidth = fill();
+			cardWidth = set.length ? runWidth / set.length : 0;
+		}
 		measure();
 		window.addEventListener('resize', measure);
 		if (window.ResizeObserver) { new ResizeObserver(measure).observe(track); }
@@ -86,7 +95,7 @@
 			last = now;
 
 			if (runWidth > 0) {
-				var base = runWidth / SECONDS_PER_RUN;
+				var base = cardWidth / SECONDS_PER_CARD;
 				offset += (base + boost) * dt;
 				boost *= Math.pow(DECAY, dt);
 				if (Math.abs(boost) < 0.5) { boost = 0; }

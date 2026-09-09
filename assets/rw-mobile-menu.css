@@ -238,6 +238,40 @@
 		filter: brightness(1.06);
 	}
 
+	/* ---------- footer social links ---------- */
+	.rw-nav-social {
+		display: flex;
+		justify-content: center;
+		gap: 14px;
+	}
+
+	.rw-nav-social__link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		/* 52px keeps each one a comfortable thumb target even though the glyph
+		   inside is half that. */
+		width: 52px;
+		height: 52px;
+		border-radius: 999px;
+		background: rgba(67, 45, 26, 0.07);
+		color: var(--rw-ink, #432D1A);
+		text-decoration: none;
+		transition: background 0.2s ease, color 0.2s ease;
+	}
+
+	.rw-nav-social__link svg {
+		width: 24px;
+		height: 24px;
+		display: block;
+	}
+
+	.rw-nav-social__link:hover,
+	.rw-nav-social__link:focus-visible {
+		background: var(--rw-nav-accent);
+		color: #2A1A0E;
+	}
+
 	/* Stop the page scrolling behind the open drawer. */
 	body.rw-nav-open {
 		overflow: hidden;
