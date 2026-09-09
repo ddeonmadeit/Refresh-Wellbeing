@@ -1872,6 +1872,34 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 	color: var(--rw-on-panel) !important;
 }
 
+/* The Spa Treatments accordion is a <button>, not a link, so the rule above
+   never reached it and it kept --rw-nav-fg (#F6EFE7) - the foreground from
+   when this drawer was brown. Cream on cream: the row rendered blank. */
+.rw-nav-panel .rw-nav-sub-toggle {
+	color: var(--rw-on-panel) !important;
+}
+
+/* Its submenu links were set at 82% of that same cream. */
+.rw-nav-panel .rw-nav-sub a {
+	color: rgba(67, 45, 26, 0.78) !important;
+}
+
+/* The expanded panel was inset with 18% black to darken the brown drawer.
+   Against cream that reads as grey, so it becomes a warm tan wash instead. */
+.rw-nav-panel .rw-nav-sub {
+	background: rgba(202, 146, 92, 0.10);
+}
+
+/* Both hover states washed white over the row, which showed as nothing once
+   the drawer went cream. */
+.rw-nav-panel .rw-nav-sub-toggle:hover,
+.rw-nav-panel .rw-nav-sub-toggle:focus-visible,
+.rw-nav-panel .rw-nav-sub a:hover,
+.rw-nav-panel .rw-nav-sub a:focus-visible {
+	background: rgba(67, 45, 26, 0.07);
+	color: var(--rw-accent-ink, #8A5A2B) !important;
+}
+
 .rw-nav-close { background-color: rgba(67, 45, 26, 0.08) !important; }
 
 /* The burger is an SVG stroked with currentColor, so it follows the button's
