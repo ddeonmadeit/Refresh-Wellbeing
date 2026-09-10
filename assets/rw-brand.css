@@ -735,10 +735,15 @@ body .bdp_blog_template h2.title {
    whose Elementor container was never a banner can carry the same one.
    line-height is explicit because the theme sets `h2 { line-height: 1.5px }`,
    which collapses any heading that inherits it. */
+/* The bottom padding here is the single control for the gap between a page
+   title and the line under it - .rw-treatments-body contributes nothing, so
+   there is one number to change rather than two that add up. It reads about
+   6px larger than it measures: the title's line-height leaves leading below
+   the glyphs, and the subtitle's leaves some above. */
 .rw-pagebanner {
 	width: 100vw;
 	margin-left: calc(50% - 50vw);
-	padding: 40px 20px;
+	padding: 40px 20px 14px;
 	background-color: #432D1A;
 }
 
@@ -756,7 +761,7 @@ body .bdp_blog_template h2.title {
 }
 
 @media (max-width: 778px) {
-	.rw-pagebanner { padding: 26px 16px; }
+	.rw-pagebanner { padding: 26px 16px 9px; }
 }
 
 /* Cards stretch to the tallest in their row so the Book buttons line up along
@@ -1579,12 +1584,9 @@ html { background-color: #2A1A0D; }
 }
 
 
-/* Air between the page banner and the copy under it. */
-.rw-treatments-body { padding-top: 32px; }
-
-@media (max-width: 778px) {
-	.rw-treatments-body { padding-top: 20px; }
-}
+/* Nothing: the gap under the page banner is set by .rw-pagebanner's own
+   padding-bottom, so it stays in one place rather than being the sum of two. */
+.rw-treatments-body { padding-top: 0; }
 
 
 /* =====================================================================
@@ -1819,30 +1821,32 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 .elementor-element-457a177 {
 	--min-height: 0 !important;
 	--padding-top: 20px !important;
-	--padding-bottom: 16px !important;
+	--padding-bottom: 7px !important;
 	min-height: 0 !important;
 	padding-top: 20px !important;
-	padding-bottom: 16px !important;
+	padding-bottom: 7px !important;
 }
 
+/* Top padding is zero so this banner's own padding-bottom is the only thing
+   between title and subtitle, matching how .rw-pagebanner does it. */
 .elementor-element-c0cdaf2 {
-	--padding-top: 12px !important;
+	--padding-top: 0 !important;
 	--padding-bottom: 24px !important;
-	padding-top: 12px !important;
+	padding-top: 0 !important;
 	padding-bottom: 24px !important;
 }
 
 @media (max-width: 767px) {
 	.elementor-element-457a177 {
 		--padding-top: 13px !important;
-		--padding-bottom: 10px !important;
+		--padding-bottom: 4px !important;
 		padding-top: 13px !important;
-		padding-bottom: 10px !important;
+		padding-bottom: 4px !important;
 	}
 	.elementor-element-c0cdaf2 {
-		--padding-top: 8px !important;
+		--padding-top: 0 !important;
 		--padding-bottom: 16px !important;
-		padding-top: 8px !important;
+		padding-top: 0 !important;
 		padding-bottom: 16px !important;
 	}
 }
