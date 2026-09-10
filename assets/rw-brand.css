@@ -940,6 +940,19 @@ a.rw-circle:focus-visible .rw-circle__media {
 	line-height: 1.75;
 }
 
+/* One line at every phone width. The sentence is a shade under 21em wide, so
+   the size has to track the viewport rather than sit at a fixed value -
+   anything that fits a 320px screen is too small on a 430px one. 4.1vw keeps
+   it on one line down to 320px with room to spare, and the 20px ceiling is
+   the size it already was, which fits on one line from 500px up.
+
+   Written as a child selector to clear Elementor's `.elementor-widget-container
+   p { font-size: inherit }`, which at (0,1,1) outranks a lone class and was
+   pulling the size back to the 20px its container carries. */
+.rw-enquiry > .rw-enquiry__intro {
+	font-size: clamp(13px, 4.1vw, 20px);
+}
+
 .rw-field { margin: 0 0 22px; }
 
 .rw-field__label {
