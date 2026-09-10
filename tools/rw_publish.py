@@ -27,7 +27,8 @@ TARGETS = {
     "yoga":         ["bookings/index.html", "bookings.html"],
     "treatments":   ["spa-treatments/index.html",
                      "spa-treatments/massage/index.html",
-                     "spa-treatments/facial-treatments/index.html"],
+                     "spa-treatments/facial-treatments/index.html",
+                     "spa-treatments/sauna/index.html"],
     "retreats":     ["retreats/index.html"],
 }
 
@@ -38,6 +39,7 @@ GROUP_PAGES = {
     "Massages":    "spa-treatments/massage/index.html",
     "Facials":     "spa-treatments/facial-treatments/index.html",
     "Brow & Lash": "spa-treatments/facial-treatments/index.html",
+    "Sauna":       "spa-treatments/sauna/index.html",
 }
 
 T = "\t"

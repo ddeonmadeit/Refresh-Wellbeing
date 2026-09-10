@@ -553,7 +553,7 @@ body .bdp_blog_template h2.title {
 .rw-classes__intro,
 .rw-classes__note {
 	max-width: 640px;
-	margin: 0 auto 30px;
+	margin: 0 auto 18px;
 	text-align: center;
 	line-height: 1.75;
 }
@@ -576,7 +576,7 @@ body .bdp_blog_template h2.title {
    escalate a size fight, they are now deliberately small, uppercase and tan,
    matching the TESTIMONIALS label on the home page. */
 .rw-classes__group {
-	margin: 34px 0 16px !important;
+	margin: 20px 0 12px !important;
 	text-align: center;
 	font-size: 0.78rem !important;
 	font-weight: 700 !important;
@@ -738,7 +738,7 @@ body .bdp_blog_template h2.title {
 .rw-pagebanner {
 	width: 100vw;
 	margin-left: calc(50% - 50vw);
-	padding: 66px 20px;
+	padding: 40px 20px;
 	background-color: #432D1A;
 }
 
@@ -756,7 +756,7 @@ body .bdp_blog_template h2.title {
 }
 
 @media (max-width: 778px) {
-	.rw-pagebanner { padding: 46px 16px; }
+	.rw-pagebanner { padding: 26px 16px; }
 }
 
 /* Cards stretch to the tallest in their row so the Book buttons line up along
@@ -1579,11 +1579,11 @@ html { background-color: #2A1A0D; }
 }
 
 
-/* Air between the brown page banner and the copy under it. */
-.rw-treatments-body { padding-top: 62px; }
+/* Air between the page banner and the copy under it. */
+.rw-treatments-body { padding-top: 32px; }
 
 @media (max-width: 778px) {
-	.rw-treatments-body { padding-top: 40px; }
+	.rw-treatments-body { padding-top: 20px; }
 }
 
 
@@ -1800,6 +1800,51 @@ a.wl_hf-sub-menu-item:hover { color: var(--rw-accent-ink) !important; }
 .elementor-element-457a177 .elementor-heading-title,
 .elementor-element-457a177 h2 {
 	color: var(--rw-on-panel) !important;
+}
+
+/* Elementor gives this banner a fixed 184px min-height (empty space padded
+   above and below a centred title) and the container under it a further
+   60px top and bottom - dead air that a solid brown block used to hold
+   visually, but which just reads as a gap now the page is cream on cream.
+   Both properties and the --padding-top/--min-height custom properties are
+   set here: the padding a container actually renders lives on its nested
+   .e-con-inner as padding-block-start/end, which Elementor's own base rule
+   derives from --padding-top on the .e-con itself and which then inherits
+   down - a plain `padding-top` on the outer element never reaches it. */
+/* The outer .e-con and its nested .e-con-inner both consume --padding-top/
+   --padding-bottom independently (the inner one via Elementor's own
+   --padding-block-start: var(--padding-top) mapping), so a value set here
+   is applied twice over - halved below to land at the sizes named in the
+   comment. */
+.elementor-element-457a177 {
+	--min-height: 0 !important;
+	--padding-top: 20px !important;
+	--padding-bottom: 16px !important;
+	min-height: 0 !important;
+	padding-top: 20px !important;
+	padding-bottom: 16px !important;
+}
+
+.elementor-element-c0cdaf2 {
+	--padding-top: 12px !important;
+	--padding-bottom: 24px !important;
+	padding-top: 12px !important;
+	padding-bottom: 24px !important;
+}
+
+@media (max-width: 767px) {
+	.elementor-element-457a177 {
+		--padding-top: 13px !important;
+		--padding-bottom: 10px !important;
+		padding-top: 13px !important;
+		padding-bottom: 10px !important;
+	}
+	.elementor-element-c0cdaf2 {
+		--padding-top: 8px !important;
+		--padding-bottom: 16px !important;
+		padding-top: 8px !important;
+		padding-bottom: 16px !important;
+	}
 }
 
 /* ---------- contact page ---------- */
